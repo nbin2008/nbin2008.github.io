@@ -1,0 +1,242 @@
+
+/* common */
+*{
+	margin: 0; padding: 0;
+}
+body,html{
+	font-family: "微软雅黑"; font-size: 12px; overflow: hidden;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none; color: #000;
+}
+.btnIco{
+	background: url(../images/btn.png);
+}
+b{
+	font-weight: normal;
+}
+i{
+	font-style: normal;
+}
+
+/* container1 */
+.container1{
+	width: 100%; height: 100%; background-color: #f6f6f6; position: absolute; min-width: 1000px; min-height: 400px; -display: none;
+}
+.main1{
+	position: absolute; width: calc(100% - 310px); height: calc(100% - 5px); left: 0; top: 5px; background-color: #fff;
+}
+.sider1{
+	position: absolute; width: 300px; margin-left: 10px; height: calc(100% - 5px); overflow-x: hidden; overflow-y: auto; top: 5px; right: 0px; background-color: #fff;
+}
+.showImg1{
+	width: 100%; position: relative;
+}
+.showImg1 a{
+	position: absolute; width: 70px; height: 100%; top: 0; background-color: #fff; transition: all 0.5s;
+}
+.showImg1 a:hover{
+	background-color: #e6e6e6;
+}
+.showImg1 a:before{
+	content: ''; display: block; position: absolute; width: 40px; height: 72px; background: url(../images/btn.png); left: calc(50% - 20px); top: calc(50% - 31px);
+}
+.showImg1 .showImg1_btnLeft{
+	left: 0;
+}
+.showImg1 .showImg1_btnRight{
+	right: 0;
+}
+.showImg1 .showImg1_btnLeft:before{
+	background-position: 0 -87px;
+}
+.showImg1 .showImg1_btnLeft:hover:before{
+	background-position: -46px -87px;
+}
+.showImg1 .showImg1_btnRight:before{
+	background-position: 0 0;
+}
+.showImg1 .showImg1_btnRight:hover:before{
+	background-position: -46px 0;
+}
+.showImg1 .imgBox1{
+	position: absolute; width: calc(100% - 144px); height: calc(100% - 4px); left: 72px; top: 2px; overflow: hidden;
+}
+.showImg1 .imgBox1 .img1{
+	position: absolute; display: block;
+}
+.chooseImg1_box{
+	position: relative; overflow: hidden;
+}
+.navList1{
+	height: 38px; line-height: 38px; border-top: 1px solid #e3e3e3; border-bottom: 1px solid #e3e3e3; text-align: center; font-size: 14px;
+}
+.navList1 span{
+	margin-left: -3px;
+}
+.navList1 span, .navList1 a{
+	display: inline-block; color: #666; padding: 0 10px; cursor: pointer; position: relative;
+}
+.navList1 span:before{
+	content: '|'; display: block; position: absolute; left: -3px; color: #e3e3e3;
+}
+.navList1 span:hover:before{
+	display: none;
+}
+.navList1 span:last-child:after{
+	content: '|'; display: block; position: absolute; right: 1px; color: #e3e3e3;
+}
+.navList1 span:hover, .navList1 a:hover{
+	background-color: #e3e3e3;
+}
+.navList1 .btnImgScale, .navList1 .btnImgScale:hover{
+	cursor: default; background-color: #fff; padding: 0;
+}
+.navList1 a{
+	padding: 0; width: 30px;
+}
+
+.boxLimit1{
+	position: relative; width: 100%; height: 100px
+}
+.boxLimit1 a{
+	float: left; display: block; width: 25px; height: 70px; margin: 15px 2px 0; position: relative;
+}
+.boxLimit1 a:hover{
+	background-color: #e6e6e6;
+}
+.boxLimit1 a.disable{
+	background-color: #fff;
+}
+.boxLimit1 a:before{
+	content: ''; display: block; position: absolute; width: 14px; height: 27px; left: calc(50% - 7px); top: calc(50% - 13px); background: url(../images/btn.png);
+}
+.boxLimit1 .chooseImg1_btnLeft:before, .boxLimit1 .chooseImg1_btnLeft.disable:hover:before{
+	background-position: -27px -174px;
+}
+.boxLimit1 .chooseImg1_btnLeft.disable:hover:before{
+	cursor: default;
+}
+.boxLimit1 .chooseImg1_btnLeft:hover:before{
+	background-position: -73px -174px;
+}
+.boxLimit1 .chooseImg1_btnRight:before, .boxLimit1 .chooseImg1_btnRight.disable:hover:before{
+	background-position: 0 -174px;
+}
+.boxLimit1 .chooseImg1_btnRight.disable:hover:before{
+	cursor: default;
+}
+.boxLimit1 .chooseImg1_btnRight:hover:before{
+	background-position: -46px -174px;
+}
+.imgListBox1{
+	position: relative; width: calc(100% - 58px); height: 90px; padding: 4px 0 6px; float: left; overflow: hidden;
+}
+.imgListBox1 .imgList1{
+	padding-top: 5px; position: absolute; left: 0; top: 0; transition: left 0.5s; float: left;
+}
+.imgListBox1 .imgList1 li{
+	float: left; width: 68px; height: 68px; border: 1px solid #dfdfdf; margin-top: 10px; margin-right: 10px; background-image: url(../images/a2.jpg); background-repeat: no-repeat; background-position: center; background-size: contain; cursor: pointer;
+}
+.imgListBox1 .imgList1 li.active{
+	width: 76px; height: 76px; border: 2px solid #3388fb; margin-top: 5px; background-image: url(../images/a1.jpg);
+}
+
+/* 全屏 */
+.container2{
+	width: 100%; height: 100%; background-color: #262626; position: absolute; display: none;
+}
+.btnExitFullScreen{
+	color: #989898; position: absolute; top: 1%; right: 1%; font-size: 20px; line-height: 20px;
+}
+.chooseTimeBox{
+	position: absolute; width: 70px; text-align: center; height: 20px; line-height: 20px; background-color: #3d3d3d; left: calc(50% - 35px); top: 1.5%;
+}
+.chooseTimeBox *{
+	color: #e1e1e1;
+}
+.chooseTimeBox .select{
+	background: #121212; color: #999999; width: 40px; height: 18px; left: 2px; top:1px; outline: none; display: none; float: left; position: relative; top: 1px;
+}
+.chooseTimeBox .btnStart{
+	-display: none;
+}
+.chooseTimeBox .btnStop{
+	display: none; position: relative; top: -1px;
+}
+.imgBox2{
+	position: absolute; width: 70%; height: calc(90% - 144px); -border: 1px solid red; left: 15%; top: 8%;
+}
+.imgBox2 img{
+	position: absolute;
+}
+.showImg2_btnLeft, .showImg2_btnRight{
+	width: 50%; height: calc(90% - 144px); position: absolute; top: 8%; -border: 1px solid #fff;
+}
+.showImg2_btnLeft{
+	left: 0; cursor: url(../images/cur_left.jpg),auto;;
+}
+.showImg2_btnRight{
+	right: 0; cursor: url(../images/cur_right.jpg),auto;;
+}
+.imgListBox2{
+	position: absolute; width: 80%; height: 140px; border: 1px solid #3e3e3e; left: 10%; bottom: 2%; overflow: hidden;
+}
+.imgList2{
+	position: absolute; left: 0; top: 0; width: 100%; height: 110px; top: 15px; transition: left 0.5s;
+}
+.imgList2 li{
+	width: 110px; height: 110px; box-sizing: border-box; border: 1px solid #707070; float: left; margin-right: 5px; background-image: url(../images/a2.jpg); background-repeat: no-repeat; background-position: center; background-size: contain; cursor: pointer;
+}
+.imgList2 li.active{
+	border: 2px solid #2f95d5;
+}
+
+.container2 .aBtn{
+	position: absolute; display: block; width: 25px; height: 70px; margin: 15px 2px 0;
+}
+.container2 .aBtn:hover{
+	background-color: #e6e6e6;
+}
+.container2 .aBtn.disable{
+	background-color: #fff;
+}
+.container2 .aBtn:before{
+	content: ''; display: block; position: absolute; width: 14px; height: 27px; left: calc(50% - 7px); top: calc(50% - 13px); background: url(../images/btn.png);
+}
+.container2 .chooseImg2_btnLeft{
+	left: calc(10% - 50px); bottom: calc(2% + 35px);
+}
+.container2 .chooseImg2_btnRight{
+	right: calc(10% - 50px); bottom: calc(2% + 35px);
+}
+.container2 .chooseImg2_btnLeft:before, .container2 .chooseImg2_btnLeft.disable:hover:before{
+	background-position: -27px -174px;
+}
+.container2 .chooseImg2_btnLeft.disable:hover:before{
+	cursor: default;
+}
+.container2 .chooseImg2_btnLeft:hover:before{
+	background-position: -73px -174px;
+}
+.container2 .chooseImg2_btnRight:before, .container2 .chooseImg2_btnRight.disable:hover:before{
+	background-position: 0 -174px;
+}
+.container2 .chooseImg2_btnRight.disable:hover:before{
+	cursor: default;
+}
+.container2 .chooseImg2_btnRight:hover:before{
+	background-position: -46px -174px;
+}
+
+
+
+
+
+
+
+
+

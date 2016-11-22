@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>仿百度图片浏览</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<script src="js/jquery-2.1.0.js"></script>
+		<script src="js/data.js"></script>
+		<script src="js/handleImage.js"></script>
+		<script src="js/index.js"></script>
+	</head>
+	<body>
+		<div class="container1">
+			<div class="main1">
+				<!-- 图片显示 -->
+				<div class="showImg1">
+					<a href="javascript:;" class="showImg1_btnLeft"></a>
+					<a href="javascript:;" class="showImg1_btnRight"></a>
+					<div class="imgBox1">
+						<img src="" class="img1"/>
+					</div>
+				</div>
+				<!-- 图片选择 -->
+				<div class="chooseImg1_box">
+					<div class="navList1">
+						<span class="btnImgList">图片列表<i></i></span>
+						<span class="btnImgScale">
+							<a href="javascript:;" class="scaleAdd1">+</a>
+							<b class="scale1">100%</b>
+							<a href="javascript:;" class="scaleReduce1">-</a>
+						</span>
+						<span class="btnImgInit1">原始尺寸</span>
+						<span class="btnImgFullScreen">全屏</span>
+						<span>其他</span>
+						<span>其他</span>
+					</div>
+					<div class="boxLimit1">
+						<a href="javascript:;" class="chooseImg1_btnLeft"></a>
+						<div class="imgListBox1">
+							<ul class="imgList1">
+								<!--<li></li>
+								<li class="active"></li>-->
+							</ul>
+						</div>
+						<a href="javascript:;" class="chooseImg1_btnRight"></a>
+					</div>
+					
+				</div>
+			</div>
+			<div class="sider1">
+				<p class="pTroTit1"></p>
+				<p class="pTroName1"></p>
+			</div>
+		</div>
+		<!-- 全屏 -->
+		<div class="container2">
+			<div class="chooseTimeBox">
+				<select class="select">
+					<option value="2">2s</option>
+					<option value="3">3s</option>
+					<option value="5">5s</option>
+				</select>
+				<a href="javascript:;" class="btnStart">开始</a>
+				<a href="javascript:;" class="btnStop">||</a>
+			</div>
+			<!-- main -->
+			<div class="imgBox2">
+				<img src="" class="img2" />
+			</div>
+			<a href="javascript:;" class="showImg2_btnLeft"></a>
+			<a href="javascript:;" class="showImg2_btnRight"></a>
+			<div class="imgListBox2">
+				<ul class="imgList2"></ul>
+			</div>
+			<a href="javascript:;" class="chooseImg2_btnLeft aBtn" ></a>
+			<a href="javascript:;" class="chooseImg2_btnRight aBtn"></a>
+			<a href="javascript:;" class="btnExitFullScreen">x</a>
+		</div>
+	</body>
+</html>

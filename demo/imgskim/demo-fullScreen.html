@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#d1 {
+				width: 200px;
+				height: 200px;
+				background-color: #ccc;
+				cursor: url(images/cur_left.jpg),auto;
+			}
+		</style>
+		<script src="js/jquery-2.1.0.js"></script>
+	</head>
+
+	<body>
+		<button id="btn">全屏按钮</button>
+		<button id="exit">退出全屏</button>
+		<div id="d1"></div>
+		<script type="text/javascript">
+			
+			$(document).ready(function(){
+				$('#btn').on('click.a1',function(){
+					console.log('1')
+				});
+				$('#btn').on('click.a2',function(){
+					console.log('2')
+				});
+				$('#btn').off('click.a2');
+				
+				
+			});
+			
+			var btn = document.getElementById('btn'),
+				exit = document.getElementById('exit'),
+				d1 = document.getElementById('d1');
+			/*btn.onclick = function(){
+				enterFullscreen(document.documentElement);
+			};
+			exit.onclick = function(){
+				exitFullscreen();
+			};*/
+			
+			// 判断各种浏览器
+			function enterFullscreen() {
+				var element = document.documentElement;
+				if (element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				} else if (element.webkitRequestFullscreen) {
+					element.webkitRequestFullscreen();
+				} else if (element.msRequestFullscreen) {
+					element.msRequestFullscreen();
+				}
+			}
+			// 判断浏览器种类
+			function exitFullscreen() {
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if (document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if (document.webkitExitFullscreen) {
+					document.webkitExitFullscreen();
+				}
+			}
+		</script>
+	</body>
+
+</html>
