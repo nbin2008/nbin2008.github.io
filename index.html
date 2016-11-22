@@ -5,6 +5,24 @@
 	<title>nbin2008 demo list</title>
 </head>
 <body>
-	<h1>nbin2008 demo list</h1>
+	<h1>Hello World</h1>
+	<p>demo list：</p>
+	<ol id="list">
+		
+	</ol>
 </body>
+<script>
+	var ol = document.getElementById("list");
+	var data = [
+		{
+			title: 'Vuex2.0：noteApp',
+			href: 'demo/vuex2.0/index.html',
+		}
+	];
+	var str = "";
+	data.forEach(function(v,i){
+		str += "<li><span>"+ v['title'] + "：" +"</span><a target='_blank' href='"+ v['href'] +"'>跳转</a></li>";
+	});
+	ol.innerHTML = str;
+</script>
 </html>
