@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>石头剪刀布 canvas版</title>
+	</head>
+	<body>		
+		<script type="text/javascript">
+			function Game(){
+				this.init();
+			};
+			var proto = {
+				init: function(){
+					this.before();
+				},
+				before: function(){
+					var This = this;
+					var mycanvas = document.createElement("canvas");
+					mycanvas.width = 800;
+					mycanvas.height = 400;
+					this.mycanvas = mycanvas;
+					document.body.appendChild(mycanvas);
+					
+					this.typeEvent = {
+						mousedown: [],
+						mousemove: [],
+						mouseup: []
+					};
+					var typeEvent = this.typeEvent;
+					for( var name in typeEvent ){
+						(function(name){
+							mycanvas['on'+name] = function(e){
+								for( var i=0; i<typeEvent[name].length; i++ ){
+									typeEvent[name][i](e);
+								};
+							};
+						})(name);
+					};
+					this.btnCheck = {
+						shitou: 0,
+						jiandao: 0,
+						bu: 0
+					}
+					
+					var dmycanvas = document.createElement("canvas");
+					dmycanvas.width = mycanvas.width;
+					dmycanvas.height = mycanvas.height;
+					this.dctx = dmycanvas.getContext("2d");
+					
+					var img = new Image();
+					img.src = "images/bg.png";
+					img.onload = function(){
+						This.img = img;
+						This.startDraw();
+					};
+				},
+				startDraw: function(){
+					var This = this;
+					var img = this.img;
+					var mycanvas = this.mycanvas;
+					var width = mycanvas.width;
+					var height = mycanvas.height;
+					var ctx = mycanvas.getContext("2d");
+					this.resultData = {
+						all: 0,
+						win: 0,
+						loss: 0,
+						tie: 0
+					};
+					var resultData = this.resultData;
+					this.myShowData = 0;
+					this.enemyShowData = 0;
+					
+					setInterval(draw, 100);
+					
+					function draw(){
+						ctx.clearRect(0, 0, width, height);
+						//背景
+						ctx.beginPath();
+						ctx.rect(0, 0, width, height);
+						ctx.fillStyle = "#000";
+						ctx.lineWidth = 10;
+						ctx.strokeStyle = "#008800";
+						ctx.fill();
+						ctx.stroke();
+						ctx.closePath();
+						//title	540x100 
+						ctx.drawImage( img, 0, 0, 540, 100, (800-540)/2, 15, 540, 100 );
+						//结果层
+						var resultBg = drawResult();
+						ctx.drawImage(resultBg, 5, 145)
+						//显示层
+						var showBg = drawShow();
+						ctx.drawImage(showBg, 260, 120)
+						//点击层	这个要和鼠标事件同步
+						drawClick();
+					};
+					
+					function drawClick(){
+						ctx.beginPath();
+						ctx.rect(250,280,300,100);
+						ctx.fillStyle = "#fff";
+						ctx.lineWidth = 5;
+						ctx.strokeStyle = "#FF8800";
+						ctx.fill();
+						ctx.stroke();
+						ctx.closePath();
+						//文字
+						ctx.beginPath();
+						ctx.font = "16px 微软雅黑 normal"
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000";
+						ctx.strokeText("请出拳", 275, 305);
+						//点击图案
+						ctx.beginPath();
+						ctx.drawImage(tcShitou,288,320);
+						ctx.arc(310,342,22,0,2*Math.PI,true);
+						if( !This.o1 ){
+							This.o1 = true;
+							This.typeEvent['mousedown'].push(function(e){
+								var x = e.clientX - mycanvas.getBoundingClientRect().left;
+								var y = e.clientY - mycanvas.getBoundingClientRect().top;
+								This.dctx.beginPath();
+								This.dctx.arc(310,342,22,0,2*Math.PI,true);
+								if( This.dctx.isPointInPath(x,y) ){
+									This.myShowData = 0;
+									This.count();
+								};
+							});
+						};
+						
+						ctx.beginPath();
+						ctx.drawImage(tcJiandao,380,320);
+						ctx.arc(402,342,22,0,2*Math.PI,true);
+						if( !This.o2 ){
+							This.o2 = true;
+							This.typeEvent['mousedown'].push(function(e){
+								var x = e.clientX - mycanvas.getBoundingClientRect().left;
+								var y = e.clientY - mycanvas.getBoundingClientRect().top;
+								This.dctx.beginPath();
+								This.dctx.arc(402,342,22,0,2*Math.PI,true);
+								if( This.dctx.isPointInPath(x,y) ){
+									This.myShowData = 1;
+									This.count();
+								};
+							});
+						};
+						
+						ctx.beginPath();
+						ctx.drawImage(tcBu,472,320);
+						ctx.arc(494,342,22,0,2*Math.PI,true);
+						if( !This.o3 ){
+							This.o3 = true;
+							This.typeEvent['mousedown'].push(function(e){
+								var x = e.clientX - mycanvas.getBoundingClientRect().left;
+								var y = e.clientY - mycanvas.getBoundingClientRect().top;
+								This.dctx.beginPath();
+								This.dctx.arc(494,342,22,0,2*Math.PI,true);
+								if( This.dctx.isPointInPath(x,y) ){
+									This.myShowData = 2;
+									This.count();
+								};
+							});
+						};
+					};
+					
+					var tcShitou = document.createElement("canvas");
+					var tcSctx = tcShitou.getContext("2d");
+					var tcJiandao = document.createElement("canvas");
+					var tcJctx = tcJiandao.getContext("2d");
+					var tcBu = document.createElement("canvas");
+					var tcBctx = tcBu.getContext("2d");
+					var tcArr = [tcSctx, tcJctx, tcBctx];
+					for(var i=0; i<tcArr.length; i++ ){
+						tcArr[i].width = 43;
+						tcArr[i].height = 43;
+						if( i==0 ){
+							tcSctx.drawImage(img,0,100,86,86,0,0,43,43);
+						}else if( i==1 ){
+							tcJctx.drawImage(img,100,100,86,86,0,0,43,43);
+						}else if(i==2){
+							tcBctx.drawImage(img,200,100,86,86,0,0,43,43);
+						}
+					};
+					
+					var resultCanvas = document.createElement("canvas");
+					var rctx = resultCanvas.getContext("2d");
+					resultCanvas.width = 150;
+					resultCanvas.height = 110;
+					rctx.font = "12px 微软雅黑 normal";
+					rctx.textBaseline = "middle";
+					function drawResult(){
+						rctx.clearRect(0,0,150,110);
+						rctx.rect(0,0,150,110);
+						rctx.lineWidth = 10;
+						rctx.strokeStyle = "#ff8800";
+						rctx.fillStyle = "#fff";
+						rctx.fill();
+						rctx.stroke();
+						//文字
+						rctx.strokeStyle = "#000";
+						rctx.lineWidth = 1;
+						rctx.strokeText("猜拳次数："+resultData['all'],20,25);
+						rctx.strokeText("胜利次数："+resultData['win'],20,45);
+						rctx.strokeText("失败次数："+resultData['loss'],20,65);
+						rctx.strokeText("平局次数："+resultData['tie'],20,85);
+						return resultCanvas;
+					};
+					
+					var showCanvas = document.createElement("canvas");
+					showCanvas.width = 280;
+					showCanvas.height = 140;
+					var sctx = showCanvas.getContext("2d");
+					sctx.font = "24px 微软雅黑 normal";
+					sctx.textBaseline = "middle";
+					sctx.textAlign = "center";
+					function drawShow(){
+						sctx.clearRect(0,0,280,140);
+						//文字
+						sctx.lineWidth = 1;
+						sctx.strokeStyle = "#fff"
+						sctx.strokeText("玩家",70,20);
+						sctx.strokeText("电脑",210,20);
+						//图像
+						This.myShowData == 0 ? sctx.drawImage(img,0,100,86,86,27,48,86,86) :
+						This.myShowData == 1 ? sctx.drawImage(img,100,100,86,86,27,48,86,86) :
+						This.myShowData == 2 ? sctx.drawImage(img,200,100,86,86,27,48,86,86) : "";
+						This.enemyShowData == 0 ? sctx.drawImage(img,0,100,86,86,167,48,86,86) :
+						This.enemyShowData == 1 ? sctx.drawImage(img,100,100,86,86,167,48,86,86) :
+						This.enemyShowData == 2 ? sctx.drawImage(img,200,100,86,86,167,48,86,86) : "";
+						return showCanvas;
+					};
+				},
+				count: function(){
+					var ran = Math.round(Math.random()*2);
+					this.enemyShowData = ran;
+					var testArr = [
+						[0, 1, -1],
+						[-1, 0, 1],
+						[1, -1, 0]
+					];
+					var result = testArr[this.myShowData][ran];
+					result == 1 ? this.resultData['win']++ :
+					result == -1 ? this.resultData['loss']++ :
+					result == 0 ? this.resultData['tie']++ : "";
+					this.resultData['all']++;
+				}
+			};
+			Game.prototype = proto;
+			var g = new Game();
+		</script>
+	</body>
+</html>

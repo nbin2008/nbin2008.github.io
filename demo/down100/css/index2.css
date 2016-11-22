@@ -1,0 +1,123 @@
+*{ margin: 0; padding: 0; }
+.box{
+	width: 320px; height: 480px; left: calc(50% - 160px); top: calc(50% - 240px); position: absolute; overflow: hidden;
+}
+.box *{
+	position: absolute; box-sizing: border-box;
+}
+/* 背景层 */
+.bgLayer{
+	width: 320px; height: 960px; left: 0; top: 0; background: url(../images/bg.jpg) repeat-y; 
+}
+.floor01{
+	width: 100px; height: 20px; background: url(../images/floor01.png) no-repeat;
+}
+.floor02{
+	width: 100px; height: 20px; background: url(../images/floor1.png) no-repeat 0 0;
+}
+.floor02.state{
+	background-position: -100px 0;
+}
+.floor03{
+	width: 100px; height: 20px; background: url(../images/floor2.png) no-repeat 0 0;
+}
+.floor03.state{
+	background-position: -100px 0;
+}
+.floor04{
+	width: 100px; height: 20px; background: url(../images/floor3.png) no-repeat;
+}
+.floor05, .floor06{
+	width: 80px; height: 20px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;
+}
+.floor05:before, .floor06:before{
+	content: ''; display: block; width: 20px; height: 20px; background: url(../images/wheel.png) no-repeat; left: -10px; top: -1px; position: absolute;
+}
+.floor05:after, .floor06:after{
+	content: ''; display: block; width: 20px; height: 20px; background: url(../images/wheel.png) no-repeat; right: -10px; top: -1px; position: absolute;
+}
+.floor05:before, .floor05:after{
+	animation: rotateLeft 3s linear 0s infinite normal;
+}
+.floor06:before, .floor06:after{
+	animation: rotateRight 3s linear 0s infinite normal;
+}
+/* 顶部扣血层 */
+.topHit{
+	width: 320px; height: 20px; left: 0; top: 0; background: url(../images/floor3.png) repeat-x; transform: rotate(180deg);
+}
+/* 地板层 */
+.floorLayer{
+	width: 320px; height: 480px; left: 0; top: 0;
+}
+/* 游戏按钮 */
+.btn{
+	width: 100px; height: 40px; background-color: #fff; left: calc(50% - 50px); top: calc(50% - 20px); text-align: center; line-height: 40px; cursor: pointer; font-weight: bold;
+}
+/* 英雄层 */
+.hero{
+	width: 40px; height: 50px; background: url(../images/hero.png) no-repeat 0 0; display: none;
+}
+.up{
+	background-position: -40px 0;
+}
+.left{
+	animation: left 1s step-start 0s infinite normal;
+}
+.right{
+	animation: right 1s step-start 0s infinite normal;
+}
+/*
+ * 血量
+ */
+.blood{
+	color: #fff; left: 5px; top: 15px;
+}
+.txt{
+	color: #fff; left: 5px; top: 35px; font-size: 12px;
+}
+
+/*
+ * 动画类效果
+ */
+@keyframes rotateLeft{
+	from{ transform: rotate(0); }
+	to{ transform: rotate(-360deg); }
+}
+@keyframes rotateRight{
+	from{ transform: rotate(0); }
+	to{ transform: rotate(360deg); }
+}
+@keyframes left{
+	0% { background-position: -520px 0; }
+	9% { background-position: -560px 0; }
+	18% { background-position: -600px 0; }
+	27% { background-position: -640px 0; }
+	36% { background-position: -680px 0; }
+	45% { background-position: -720px 0; }
+	54% { background-position: -760px 0; }
+	63% { background-position: -800px 0; }
+	72% { background-position: -840px 0; }
+	81% { background-position: -880px 0; }
+	90% { background-position: -920px 0; }
+	100% { background-position: -520px 0; }
+}
+@keyframes right{
+	0% { background-position: -80px 0; }
+	9% { background-position: -120px 0; }
+	18% { background-position: -160px 0; }
+	27% { background-position: -200px 0; }
+	36% { background-position: -240px 0; }
+	45% { background-position: -280px 0; }
+	54% { background-position: -320px 0; }
+	63% { background-position: -360px 0; }
+	72% { background-position: -400px 0; }
+	81% { background-position: -440px 0; }
+	90% { background-position: -480px 0; }
+	100% { background-position: -80px 0; }
+}
+
+
+
+
+

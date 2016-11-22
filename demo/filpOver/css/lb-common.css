@@ -1,0 +1,22 @@
+
+*{ margin: 0; padding: 0; }
+li{ list-style: none; }
+a{ text-decoration: none; color: #000; }
+b{ font-weight: normal; }
+img{ border: none; }
+input{ outline: none; }
+html,body{ font-family: "微软雅黑"; font-size: 12px; }
+h1,h2,h3,h4,h5,h6{ font-weight: normal; }
+
+.middlefix{
+	width: 1000px; margin: 0 auto; position: relative;
+}
+.clearfix{ zoom: 1; }
+.clearfix:after{ content: ''; display: block; clear: both; }
+.fLeft{ float: left; }
+.fRight{ float: right; }
+
+@font-face{
+	font-family: myNumberFont;
+	src: url('../fontSize/HelveticaNeueLTPro-ThCn.otf');
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>站内信</title>
+		<link rel="stylesheet" type="text/css" href="css/lb-common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/pop/common-pop2.css"/>
+		<link rel="stylesheet" type="text/css" href="css/pop/znx.css"/>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/flipOver.js"></script>
+		<script src="js/znx.js"></script>
+	</head>
+	<body>
+		<div class="pop-container">
+			<!-- 公用头部 -->
+			<div class="pop-header">
+				<div class="pop-logo-box">
+					<div class="pop-logo pop-bg logo-znx"></div>
+					<p class="pop-logo-p1">站内信</p>
+					<p class="pop-logo-p2">message box</p>
+				</div>
+				<a href="javascript:;" id="closeBtn">关闭</a>
+			</div>
+			<!-- 主体 -->
+			<div class="pop-main clearfix znx">
+				<!-- 导航 -->
+				<div class="nav">
+					<a href="javascript:;" class="active">收件箱</a>
+					<a href="javascript:;" >垃圾箱</a>
+					<a href="javascript:;">已发信件</a>
+					<a href="javascript:;">新建广播</a>
+					<span>Tips: 标题前有色标的邮件为未读消息。</span>
+				</div>
+				<!-- 列表 -->
+				<div class="list-box clearfix">
+					<!-- 通知列表11个 -->
+					<div class="list">
+						<a href="javascropt:;" class="active" callId="1">系统通知</a>
+					</div>
+					<!-- 显示内容 -->
+					<div class="show-limit">
+						<div class="show-content">
+							<!-- type1 普通 -->
+							<!--<div class="gg">
+								<span class="gs">广播标题：</span>
+								<div class="gd">内容</div>
+								<div class="gbox">
+									<a href="javascript:;" class="btnType1 download">下载</a>
+									<a href="javascript:;" class="btnType1 btnApply">申请</a>
+									<a href="javascript:;" class="btnType1 btnReply">回复</a>
+								</div>
+							</div>-->
+							<!-- type2 textarea -->
+							<!--<div class="gg">
+								<span class="gs">广播标题：</span>
+								<textarea class="gd-textarea" readonly="readonly"></textarea>
+							</div>-->
+						</div>
+						<div class="show-content2">
+							<input type="text" class="replyTitle" placeholder="邮件回复标题" title="邮件标题" />
+							<textarea class="replyTextarea" placeholder="邮件回复内容" title="邮件内容" ></textarea>
+							<br />
+							<a href="javascript:;" class="btnType1 btnConfirm">确定</a>
+							<a href="javascript:;" class="btnType2 btnCancel">取消</a>
+						</div>
+					</div>
+				</div>
+				<!-- 按钮 -->
+				<div class="btnBox">
+					<div class="bLeftBox">
+						<a href="javascript:;" class="listPrevBtn">上一页</a>
+						<p>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+						</p>
+						<a href="javascript:;" class="listNextBtn">下一页</a>
+					</div>
+					<div class="bRightBox">
+						<!--<a href="javascript:;" class="btnType1 btnApply">申请</a>
+						<a href="javascript:;" class="btnType1 btnReply">回复</a>-->
+						<a href="javascript:;" class="btnType2 btnRemove">删除</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

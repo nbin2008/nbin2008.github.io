@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>俄罗斯方块 div版</title>
+		<style type="text/css">
+			*{ margin: 0; padding: 0; }
+			.gameBox{
+				width: 317px; height: 423px; background: url(images/bg.jpg) no-repeat center top; position: absolute; left: calc(50% - 160px); top: calc(50% - 211px); font-family: "微软雅黑"; font-size: 20px; font-weight: bold; text-align: center;
+			}
+			.gameBox>div{
+				position: absolute;
+			}
+			.main{
+				width: 200px; height: 400px; left: 12px; top: 12px;
+			}
+			.next{
+				width: 80px; height: 80px; left: 225px; top: 56px;
+			}
+			.main div, .next div{
+				width: 20px; height: 20px; float: left;
+			}
+			.main .r1, .next .r1{
+				background: url(images/r1.png) no-repeat;
+			}
+			.main .r2, .next .r2{
+				background: url(images/r2.png) no-repeat;
+			}
+			.main .r3, .next .r3{
+				background: url(images/r3.png) no-repeat;
+			}
+			.main .r4, .next .r4{
+				background: url(images/r4.png) no-repeat;
+			}
+			.score, .remove, .speed{
+				width: 83px; left: 223px; top: 189px;
+			}
+			.remove{
+				top: 280px;
+			}
+			.speed{
+				top: 375px;
+			}
+		</style>
+		<script src="js/jquery-2.1.0.js"></script>
+		<script src="js/index2.js"></script>
+	</head>
+	<body>
+		<div class="gameBox">
+			<div class="main"></div>
+			<div class="next"></div>
+			<div class="score">0</div>
+			<div class="remove">0</div>
+			<div class="speed">1</div>
+		</div>
+	</body>
+</html>

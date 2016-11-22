@@ -1,0 +1,121 @@
+/*
+ * 站内信
+ */
+.logo-znx{
+	width: 46px; height: 36px; background-position: -480px 0; left: -35px; top: 10px;
+}
+.nav{
+	width: 100%; height: 39px; border-bottom: 1px solid #e5e5e5; padding-left: 10px; line-height: 40px;
+}
+.nav a{
+	display: inline-block; height: 38px; text-align: center; padding: 0 20px; font-size: 14px; float: left; border: 1px solid #fff; border-bottom-color: #e5e5e5;
+}
+.nav a.active{
+	font-weight: bold; border: 1px solid #e5e5e5; border-bottom-color: #fff;
+}
+.nav span{
+	float: right;
+}
+
+/* 列表 */
+.list-box{
+	width: 100%; height: 600px; margin-top: 10px; overflow: hidden;
+}
+.list{
+	float: left; width: 199px; height: 600px; border-right: 1px solid #e5e5e5; text-indent: 30px;
+}
+.list a{
+	display: block; width: 198px; height: 54px; line-height: 54px; position: relative; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+}
+.list a.unread:before{
+	content: ''; display: block; position: absolute; width: 6px; height: 6px; border-radius: 2px; background-color: #f0a000; left: 20px; top: 21px;
+}
+.list a.active{
+	border: 1px solid #e5e5e5; border-right-color: #fff;
+}
+/* 内容 */
+.list-box .show-limit{
+	width: 700px; height: 600px; float: right; position: relative; overflow: auto;
+}
+.list-box .show-content{
+	padding-bottom: 20px; line-height: 25px;
+}
+.gg{ border-bottom: 1px solid #E5E5E5;}
+.gg:after{
+	content: ""; display: block; clear: both;
+}
+.gg .gs{
+	float: left; width: 15%; padding: 1px;
+}
+.gg .gd{
+	float: left; width: 70%; padding: 1px;
+}
+.gg .gd-textarea{
+	float: left; width: 70%; height: 100px; outline: none; resize: none;
+}
+.gg .gbox{
+	float: left; width: 14%;
+}
+.list-box .show-content2{
+	position: absolute; left: 0; top: 0; width: 700px; height: 600px; background-color: #fff; display: none;
+}
+.show-content2 .replyTitle{
+	height: 30px; width: 600px; font-size: 14px;
+}
+.show-content2 .replyTextarea{
+	width: 600px; height: 400px; outline: none; resize: none; margin-top: 20px; line-height: 20px;
+}
+
+/* 按钮 */
+.btnBox{
+	height: 42px; position: relative; overflow: hidden;
+}
+.bLeftBox{
+	height: 42px; float: left;
+}
+.bLeftBox *{
+	display: inline-block;
+}
+.bLeftBox p{
+	margin: 0 10px; vertical-align: middle;
+}
+.bLeftBox .listPrevBtn, .bLeftBox .listNextBtn{
+	line-height: 42px;
+}
+.bLeftBox .active{
+	font-weight: bold; color: #3aa2c7; text-decoration: underline;
+}
+.bLeftBox p a{
+	width: 23px; height: 28px; text-align: center; line-height: 28px;
+}
+.bLeftBox p a.disabled{
+	cursor: default;
+}
+.bLeftBox p .active{
+	background-color: red; text-decoration: none; color: #fff; font-weight: normal; background: url(../../images/lb-pop/pop.png) no-repeat 0 -140px;
+}
+.bRightBox{
+	float: right;
+}
+.bRightBox a, .show-content2 a, .gbox a{
+	display: inline-block; width: 36px; height: 42px; background: url(../../images/lb-pop/pop.png) no-repeat; text-align: center; line-height: 42px; color: #fff; margin: 0 5px;
+}
+.bRightBox .btnType1, .show-content2 .btnType1, .gbox .btnType1{
+	background-position: -30px -140px;
+}
+.bRightBox .btnType2, .show-content2 .btnType2{
+	background-position: -80px -140px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

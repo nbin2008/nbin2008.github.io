@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>马赛克</title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			.box{width: 0; height: 0; overflow: hidden; position: relative;}
+			.cur{width: 10px; height: 10px; position: absolute; background-color: rgba(0,0,0,0.8); left: 0; top: 0;  display: none; }
+		</style>
+		<script src="js/jquery-2.1.0.js"></script>
+	</head>
+	<body>
+		<input type="file" id="file" value="选择图片" /><button class="save">生成图片</button>
+		<div class="box">
+			<canvas></canvas>
+			<div class="cur"></div>
+		</div>
+		<img src="" />
+	</body>
+</html>
+
+<script type="text/javascript">
+	var $box = $('.box'),
+		$save = $('.save'),
+		$img = $('img'),
+		canvas = $('canvas')[0],
+		ctx = canvas.getContext('2d');
+		$file = $('#file'),
+		$cur = $('.cur'),
+		tileR= 8,
+		curR = 20,
+		reader = new FileReader();
+	
+	var allEvent = {
+		init: function(){
+			this.nb = {};
+			this.fileEvent();
+			this.curEvent();
+			this.saveEvent();
+		},
+		fileEvent: function(){
+			var self = this;
+			$file.on('change',function(){
+				if(/image\/\w+/.test(this.files[0].type)){
+					reader.readAsDataURL(this.files[0]);
+					reader.onload = function(){
+						self.nb.src = this.result;
+						setImage();
+					};
+					$img.attr('src','');
+				}else{
+					alert("请上传jpg/png文件");  
+				}
+				$(this).val('');
+			});
+			function setImage(){
+				var img = new Image();
+				img.src = self.nb.src;
+				img.onload = function(){
+					self.nb.img = img;
+					self.nb.width = img.width;
+					self.nb.height = img.height;
+					$box.css({
+						'width':self.nb.width,
+						'height':self.nb.height
+					});
+					canvas.width = self.nb.width;
+					canvas.height = self.nb.height;
+					self.nb.r = 20;
+					$cur.css({
+						'width':self.nb.r,
+						'height':self.nb.r
+					});
+					self.canvasEvent();
+				};
+			};
+		},
+		canvasEvent: function(){
+			var self = this;
+			ctx.clearRect(0,0,self.nb.width,self.nb.height);
+			ctx.drawImage(self.nb.img,0,0,self.nb.width,self.nb.height);
+			self.nb.imageData = ctx.getImageData(0,0,self.nb.width,self.nb.height);
+			self.nb.pixels = self.nb.imageData.data;
+		},
+		curEvent: function(){
+			var self = this;
+			var left = $box.offset().left;
+			var top = $box.offset().top;
+			var isDown = false;
+			$box.on('mousedown',function(){
+				isDown = true;
+			});
+			$box.on('mouseup',function(){
+				isDown = false;
+			});
+			$box.on('mousemove',function(e){
+				self.absPageX = e.pageX - left;
+				self.absPageY = e.pageY - top;
+				var x = self.absPageX - self.nb.r/2;
+				var y = self.absPageY - self.nb.r/2;
+				$cur.css({
+					'left': x,
+					'top': y
+				});
+				if( isDown ){
+					fnDraw(x,y);
+				};
+			});
+			$box.on('mouseover',function(){
+				$cur.show();
+			});
+			$box.on('mouseout',function(){
+				$cur.hide();
+			});
+			var pos = {
+				rows:0,
+				coles:0,
+			};
+			var last = {
+				rows:0,
+				coles:0,
+			};
+			function fnDraw(x,y){
+				arrPos = getPos(x,y);
+				for( var i=0; i<arrPos.length; i++ ){
+					//获取像素中心点坐标
+					var tmp = arrPos[i];
+					var ty = tmp[0]*tileR + tileR/2;
+					var tx = tmp[1]*tileR + tileR/2;
+					
+					var pos = (Math.floor(ty)*(self.nb.imageData.width*4)) + (Math.floor(tx)*4);
+					var red = self.nb.pixels[pos];
+					var green = self.nb.pixels[pos+1];
+					var blue = self.nb.pixels[pos+2];
+					ctx.fillStyle = "rgb("+ red +","+ green +","+ blue +")";
+					ctx.fillRect(tx,ty,tileR,tileR);
+				};
+			};
+			function getPos(x,y){
+				var rs = Math.floor(y/tileR);
+				var cs = Math.floor(x/tileR);
+				var number = Math.ceil(curR/tileR);
+				var tmp = [];
+				for( var i=rs; i<rs+number; i++ ){
+					for( var j=cs; j<cs+number; j++ ){
+						//[行，列]
+						tmp.push([i,j]);
+					}
+				};
+				return tmp;
+			};
+		},
+		saveEvent: function(){
+			var self = this;
+			$save.on('click',function(){
+				var src = canvas.toDataURL("image/png");
+				$img.attr('src',src);
+			});
+		}
+	};
+	allEvent.init();
+</script>

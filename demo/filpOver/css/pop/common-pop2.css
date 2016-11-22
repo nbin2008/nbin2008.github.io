@@ -1,0 +1,65 @@
+.pop-bg{
+	background-image: url(../../images/lb-pop/pop.png); background-repeat: no-repeat;
+}
+.pop-container{
+	width: 1000px; position: relative;
+}
+.pop-header{
+	position: relative; height: 120px;
+}
+#closeBtn, #prevBtn{
+	position: absolute; font-size: 14px; top: 25px; right: 40px;
+}
+#closeBtn:before{
+	content: '|'; display: block; position: absolute; right: 35px; top: -1px;
+}
+#prevBtn{
+	right: 88px; color: #3AA2C7;
+}
+.pop-container .pop-header .pop-logo-box{
+	width: 180px; height: 100px; position: absolute; left: 90px; top: 25px; text-align: center;
+}
+.pop-logo{
+	width: 51px; height: 51px; position: absolute; left: -51px; top: 4px;
+}
+.pop-logo-box .pop-logo-p1{
+	font-size: 30px; font-weight: bold; line-height: 35px;
+}
+.pop-logo-box .pop-logo-p2{
+	font-size: 16px; font-weight: bold; color: #cacaca;
+}
+.pop-main{
+	width: 920px; margin: 0 auto; padding-bottom: 30px;
+}
+/*
+ * 
+ */
+.timeBox{
+	width: 920px; height: 45px; line-height: 45px; margin: 0 auto; border-bottom: 1px solid #b2b2b2; margin-bottom: 20px;
+}
+.timeBox .t1{
+	float: left; font-size: 18px; color: #3AA2C7; font-weight: bold;
+}
+.timeBox .t2{
+	float: right;
+}
+/*
+ * 按钮
+ */
+.btnBlue, .btnCyan{
+    width: 69px; height: 81px; background-position: -69px 0; text-align: center; line-height: 81px; font-size: 14px; color: #fff; transition: transform .5s linear;
+}
+.btnCyan{
+	background-position: -280px 0;
+}
+.btnBlue:hover{
+	transform: scale(1.2);
+}
+.btnCyan:hover{
+	transform: scale(1.2);
+}
+
+
+
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js日期试玩</title>
+		<style type="text/css">
+			*{ margin: 0; padding: 0; }
+			.box{ width: 350px; margin: 50px auto 0; }
+			.box>div>div{ width: 50px; height: 50px; float: left; text-align: center; line-height: 50px; }
+			.siblings{ color:#ccc; }
+		</style>
+		<script src="jquery-2.0.3.js"></script>
+		<script src="date.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				function createDiv(){
+					var i = 0;
+					var arr = ["日","一","二","三","四","五","六"];
+					for( i=0; i<7; i++ ){
+						$(".week").append("<div>"+ arr[i] +"</div>")
+					}
+					for( i=0; i<42; i++ ){
+						$(".date").append("<div></div>")
+					}
+				}
+				createDiv();
+				/*
+				 * 使用方法
+				 */
+				var a = new DateWeek($(".date"));
+				
+				/*setDate(2015,9);*/
+				var y = new Date().getFullYear();
+				var m = new Date().getMonth()-0+1;
+				var d = new Date().getDate();
+				var s = y+"-"+m+"-"+d;
+				a.setDate(y,m);
+				$("div[name="+ s +"]").css('color','red');
+				
+				/*
+				 * 需要42个元素用于显示日期，外围有一个父级$obj,JQ对象
+				 * 调用需要传入父级元素,设置日期用	setDate(年，月)方法
+				 * siblings类为上下月
+				 * 按钮没有，需要啥样式自己写，事件给直接给setDate传参即可
+				 */
+			});
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<div class="week"></div>
+			<div class="date"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+/*
+ * 飞机大战
+ */
+
+*{ margin: 0; padding: 0; }
+body, html{ font-size: 12px; font-family: "微软雅黑"; }
+
+.container{
+	width: 800px; height: 400px; background: #000000; position: absolute; left: 10px; top: 10px; color: #fff; overflow: hidden;
+}
+.container div{
+	position: absolute;
+}
+
+/* 文字层 */
+.txtLayer{
+	left: 5px; top: 2px;
+}
+/* 飞机层 */
+.plainLayer .self{
+	width: 50px; height: 47px; background: url(../images/player.png);
+}
+.plainLayer .enemy01{
+	width: 50px; height: 40px; background: url(../images/enemy1.png);
+}
+.plainLayer .enemy02{
+	width: 38px; height: 50px; background: url(../images/enemy2.png);
+}
+.plainLayer .enemy03{
+	width: 150px; height: 132px; background: url(../images/enemy3.png);
+}
+/* 子弹层 */
+.bulletLayer .self{
+	width: 10px; height: 10px; background: url(../images/bullet01.png); border-radius: 50%;
+}
+.bulletLayer .enemy{
+	width: 10px; height: 10px; background: url(../images/bullet02.png); border-radius: 50%;
+}
+.bulletLayer .die{
+	width: 49px; height: 44px; background: url(../images/remove.png); margin-left: -20px; margin-top: -18px;
+}
+/* 弹药层 */
+.ammoLayer .ammo01{
+	width: 30px; height: 30px; background: url(../images/item01.png); border-radius: 50%;
+}
+.ammoLayer .ammo02{
+	width: 30px; height: 30px; background: url(../images/item02.png); border-radius: 50%;
+}
+/* gameOver */
+.container .gameover{
+	width:200px; height: 100px; left: calc(50% - 100px); top: calc(50% - 50px); text-align: center; line-height: 100px; border: 2px solid #FF0000; background-color: #ccc; font-size: 20px; display: none;
+}
+
+
+
+
+
+

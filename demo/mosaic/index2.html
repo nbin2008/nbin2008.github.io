@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>马赛克原理</title>
+		<script src="js/jquery-2.1.0.js"></script>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500"></canvas>
+		
+		<script type="text/javascript">
+			var mycanvas = document.getElementById('mycanvas');
+			var ctx = mycanvas.getContext('2d');
+			
+			var imageData = ctx.createImageData(500,500);
+			console.log(imageData);
+			var pixels = imageData.data;
+			
+			//马赛克个数
+			var numTileRows = 4;
+			var numTileCols = 4;
+			//每个块的尺寸
+			var tileWidth = imageData.width/numTileCols;
+			var tileHeight = imageData.height/numTileRows;
+			
+			for( var r=0; r<numTileRows; r++ ){
+				for( var c=0; c<numTileCols; c++ ){
+					//为每个块设置像素的颜色值
+					var red = Math.floor(Math.random()*255);
+					var green = Math.floor(Math.random()*255);
+					var blue = Math.floor(Math.random()*255);
+					for( var tr=0; tr<tileHeight; tr++ ){
+						for( var tc=0; tc<tileWidth; tc++ ){
+							//获取像素width，height
+							var trueX = (c*tileWidth)+tc;
+							var trueY = (r*tileHeight)+tr;
+							//给每个真实像素设置值
+							var pos = (trueY*(imageData.width*4))+trueX*4;
+							pixels[pos] = red;
+							pixels[pos+1] = green;
+							pixels[pos+2] = blue;
+							pixels[pos+3] = 255;
+						};
+					}
+				};
+			};
+			ctx.putImageData(imageData,0,0);
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

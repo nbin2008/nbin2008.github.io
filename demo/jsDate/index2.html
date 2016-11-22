@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js日期</title>
+		<style type="text/css">
+			*{ margin: 0; padding: 0; font-family: "微软雅黑"; }
+		</style>
+		<script src="jquery-2.0.3.js"></script>
+		<script src="date2.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				/*
+				 * 设定随机参数
+				 */
+				var clickType = 1 - Math.round(Math.random()*2);
+				switch(clickType){
+					case -1: console.log("【过去日期不可以点击】");
+						break;
+					case 0: console.log("【所有日期可以点击】");
+						break;
+					case 1: console.log("【以后的日期不可以点击】");
+						break;
+				};
+				var prevNext = Math.round(Math.random()*12)+5;
+				console.log("可前后查看"+ prevNext +"个月");
+				var a1 = getRan();
+				var a2 = getRan();
+				var a3 = getRan();
+				function getRan(){
+					var tmp = [];
+					var j = {};
+					var max = Math.round(Math.random()*15);
+					while( tmp.length <max ){
+						var ran = Math.round(Math.random()*31);
+						if( j[ran] ){
+							continue;
+						}else{
+							j[ran] = true;
+							tmp.push(ran);
+						};
+					};
+					return tmp;
+				};
+				/*
+				 * gogo
+				 */
+				var attr = {
+					obj: $(".date-container"),
+					clickType: clickType,	//参数状态：-1过去的不可点击，0全部可点击，1以后不可以点击
+					dayState: {
+						//这里的K值要和回调MonthMsg的统一
+						'today': ['images/a2.png', 'images/a22.png', '今天'],
+						'now': ['images/a5.png', 'images/a55.png', '当前选中'],
+						'fxhd': ['images/a1.png', 'images/a11.png', '返校活动'],
+						'xmhz': ['images/a3.png', 'images/a33.png', '项目合作'],
+						'pxhd': ['images/a4.png', 'images/a44.png', '培训活动']
+					},
+					callbackGetDate: function(date){
+						//这里是点击后传入date数据,刷新右侧列表，没有返回值 ||年月日 20101010
+						console.log("把当前点击的日期"+date+"传给后台");
+					},
+					callbackGetMonthMsg: function(date){
+						//选择时间后，得到当月日程状态，有返回值 ||年月 201010
+						console.log("获得"+date+"月的日期状态");
+						return {
+							'fxhd': a1,
+							'xmhz': a2,
+							'pxhd': a3
+						};
+					},
+					monthScope: prevNext	//前后可查看的月份
+				};
+				var d = new dDate(attr);
+			});
+		</script>
+	</head>
+	<body>
+		<p style="color: red; line-height: 50px;">请F12打开控制台查看</p>
+		<div class="date-container" style=""></div>
+	</body>
+</html>

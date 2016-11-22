@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jumpdown</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script type="text/javascript" src="js/lufylegend-1.9.11.js"></script> 
+<script type="text/javascript" src="js/Background.js"></script> 
+<script type="text/javascript" src="js/Floor.js"></script> 
+<script type="text/javascript" src="js/Chara.js"></script> 
+<script type="text/javascript" src="js/Main.js"></script> 
+<script>
+function doScroll() {
+	if(window.pageYOffset === 0) {
+		window.scrollTo(0, 1);
+	}
+}
+window.onload = function() {
+	setTimeout(doScroll, 100);
+	init(10,"mylegend",320,480,main,LEvent.INIT);
+
+}
+// iPhoneを回転させた場合にもアドレスバーを消す。
+window.onorientationchange = function() {
+	setTimeout(doScroll, 100);
+};
+// Androidを回転させた場合にもアドレスバーを消す。
+window.onresize = function() {
+	setTimeout(doScroll, 100);
+}
+</script>
+</head>
+<body>
+<div id="mylegend">loading……</div>
+</body>
+</html>
