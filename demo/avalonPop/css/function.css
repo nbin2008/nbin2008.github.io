@@ -1,0 +1,20 @@
+/*功能模块样式*/
+
+/*行文字超过一定宽度显示省略号*/
+.f-abbrev {
+	display: block;
+	overflow:hidden; 
+	white-space:nowrap; 
+	text-overflow:ellipsis;
+}
+
+/*块级元素垂直居中*/
+.as-table {
+	display: table;
+	height: 100%;
+}
+.as-table .as-tcell {
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

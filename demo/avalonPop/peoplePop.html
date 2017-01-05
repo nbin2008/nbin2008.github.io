@@ -1,0 +1,125 @@
+<div class="people-pop-shade" ms-controller="vmPeoplePop" ms-visible="toggleShade">
+    <div class="people-pop-box" ms-visible="togglePeopleBox">
+        <!-- head -->
+        <div class="people-pop-head">
+            <span class="nb-fleft people-pop-head-title">自定义人群条件</span>
+            <a href="javascript:;" class="nb-fRight people-pop-close" ms-on-click="hidePeopleBox">x</a>
+        </div>
+        <!-- content -->
+        <div class="people-pop-content-box">
+            <!-- 待选标签 -->
+            <div class="nb-fLeft people-pop-unChoose-box" id="people-pop-unChoose-box">
+                <div class="people-pop-unChoose-box-limit" ms-on-scroll="fnScroll">
+                    <h3 class="people-pop-choose-title">待选标签</h3>
+                    <ul class="people-pop-unChoose-list">
+                        <!-- 性别 -->
+                        <li class="nb-clear" unChooseType="gender">
+                            <span class="tag">性别</span>
+                            <div ms-repeat-el="unChooseData.gender">
+                                <span ms-attr-index="$index" ms-class="active:el.checkNums>0" ms-on-click="unChooseClick">{{el.dictName}}</span>
+                                <b class="people-pop-content-num-all" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==1">all</b>
+                                <b class="people-pop-content-num-num" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==null&&el.checkNums>0">{{el.checkNums}}</b>
+                            </div>
+                        </li>
+                        <!-- 地域 -->
+                        <li class="nb-clear" unChooseType="region">
+                            <span class="tag">地域</span>
+                            <div ms-repeat-el="unChooseData.region" ms-if-loop="$index<5">
+                                <span ms-attr-index="$index" ms-class="active:el.checkNums>0" ms-on-click="unChooseClick">{{el.dictName}}</span>
+                                <b class="people-pop-content-num-all" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==1">all</b>
+                                <b class="people-pop-content-num-num" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==null&&el.checkNums>0">{{el.checkNums}}</b>
+                            </div>
+                            <br/><br/>
+                            <div ms-repeat-el="unChooseData.region" ms-if-loop="$index>=5">
+                                <span ms-attr-index="$index" ms-class="active:el.checkNums>0" ms-on-click="unChooseClick">{{el.dictName}}</span>
+                                <b class="people-pop-content-num-all" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==1">all</b>
+                                <b class="people-pop-content-num-num" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==null&&el.checkNums>0">{{el.checkNums}}</b>
+                            </div>
+                        </li>
+                        <!-- 设备 -->
+                        <li class="nb-clear" unChooseType="brand">
+                            <span class="tag">设备</span>
+                            <div ms-repeat-el="unChooseData.brand">
+                                <span ms-attr-index="$index" ms-class="active:el.checkNums>0" ms-on-click="unChooseClick">{{el.dictName}}</span>
+                                <b class="people-pop-content-num-all" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==1">all</b>
+                                <b class="people-pop-content-num-num" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==null&&el.checkNums>0">{{el.checkNums}}</b>
+                            </div>
+                        </li>
+                        <!-- 运营商 -->
+                        <li class="nb-clear" unChooseType="operator">
+                            <span class="tag">运营商</span>
+                            <div ms-repeat-el="unChooseData.operator">
+                                <span ms-attr-index="$index" ms-class="active:el.checkNums>0" ms-on-click="unChooseClick">{{el.dictName}}</span>
+                                <b class="people-pop-content-num-all" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==1">all</b>
+                                <b class="people-pop-content-num-num" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==null&&el.checkNums>0">{{el.checkNums}}</b>
+                            </div>
+                        </li>
+                        <!-- 行为偏好 -->
+                        <li class="nb-clear" unChooseType="behavior">
+                            <span class="tag">行为偏好</span>
+                            <div ms-repeat-el="unChooseData.behavior">
+                                <span ms-attr-index="$index" ms-class="active:el.checkNums>0" ms-on-click="unChooseClick">{{el.dictName}}</span>
+                                <b class="people-pop-content-num-all" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==1">all</b>
+                                <b class="people-pop-content-num-num" ms-if-loop="!(el.dictCode==allChoose||el.childList==null)" ms-visible="el.isAllCheck==null&&el.checkNums>0">{{el.checkNums}}</b>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 弹框 -->
+                <div class="people-pop-detail-box" id="people-pop-detail-box" ms-visible="toggleDetail">
+                    <div class="people-pop-detail-head nb-clear">
+                        <span ms-repeat-el="childList" ms-if-loop="$index==0" ms-class="active:el.checked==1" ms-attr-index="$index" ms-on-click="unChooseDetailClick">{{el.dictName}}</span>
+                        <a href="javascript:;" class="people-pop-detail-btn-close" ms-on-click="detailClose"></a>
+                        <a href="javascript:;" class="people-pop-detail-btn-reset" ms-on-click="detailReset"></a>
+                    </div>
+                    <div class="nb-clear">
+                        <span ms-repeat-el="childList" ms-if-loop="$index>0" ms-class="active:el.checked==1" ms-attr-index="$index" ms-on-click="unChooseDetailClick">{{el.dictName}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 已选标签 -->
+            <div class="nb-fRight people-pop-isChoose-box">
+                <h3 class="people-pop-choose-title">已选标签</h3>
+                <ul class="nb-clear people-pop-isChoose-list-tag">
+                    <li isChooseType="gender" ms-repeat-el="isChooseData.gender" ms-attr-i="el.i" ms-attr-i2="el.i2" ms-on-click="removeTag">
+                        <span>{{el.dictName}}</span>
+                        <a href="javascript:;">x</a>
+                    </li>
+                    <li isChooseType="region" ms-repeat-el="isChooseData.region" ms-attr-i="el.i" ms-attr-i2="el.i2" ms-on-click="removeTag">
+                        <span>{{el.dictName}}</span>
+                        <a href="javascript:;">x</a>
+                    </li>
+                    <li isChooseType="brand" ms-repeat-el="isChooseData.brand" ms-attr-i="el.i" ms-attr-i2="el.i2" ms-on-click="removeTag">
+                        <span>{{el.dictName}}</span>
+                        <a href="javascript:;">x</a>
+                    </li>
+                    <li isChooseType="operator" ms-repeat-el="isChooseData.operator" ms-attr-i="el.i" ms-attr-i2="el.i2" ms-on-click="removeTag">
+                        <span>{{el.dictName}}</span>
+                        <a href="javascript:;">x</a>
+                    </li>
+                </ul>
+                <ul class="nb-clear people-pop-isChoose-list-type">
+                    <li ms-repeat-el="isChooseData.behavior">
+                        <a href="javascript:;" class="people-pop-isChoose-btn-remove" isChooseType="behavior" ms-attr-i="el.i" ms-attr-i2="el.i2" ms-on-click="removeTag">x</a>
+                        <span class="people-pop-isChoose-name">{{el.dictName}}</span>
+                        <input type="text" ms-attr-value="el.tgiStart" ms-on-blur="tgiChange"/>
+                        <span class="people-pop-tgi">&lt;TGI&lt;</span>
+                        <input type="text" ms-attr-value="el.tgiEnd" ms-on-blur="tgiChange"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- foot -->
+        <div class="people-pop-foot">
+            <a href="javascript:;" ms-on-click="resetData">重置</a>
+            <a href="javascript:;" ms-on-click="showNameBox">生成</a>
+        </div>
+    </div>
+    <!-- 输入姓名 -->
+    <div class="people-pop-write-box" ms-visible="toggleNameBox">
+        <h3>请为您定义的人群输入一个名称</h3>
+        <input type="text" class="people-pop-write-name" ms-duplex="nameVal"/>
+        <a href="javascript:;" class="nb-fLeft" ms-on-click="hideNameBox">取消</a>
+        <a href="javascript:;" class="nb-fRight" ms-on-click="fnSubmit">确认</a>
+    </div>
+</div>

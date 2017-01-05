@@ -1,0 +1,177 @@
+.tabel-con {
+    position:relative;
+    width:100%;
+}
+
+.tabel-con .dataTables_length {
+    position:absolute;
+    z-index:1;
+    right:14px;
+    top:-42px;
+    display: none;
+}
+
+table.dataTable {
+    width:100%;
+    margin-bottom: 20px;
+}
+
+.dataTables_filter{
+    display: none;
+}
+
+table.dataTable thead tr th {
+    height:36px;
+    line-height:36px;
+    border-bottom:1px solid #f0f0f1;
+    font-weight:normal;
+    font-size:14px;
+    color:#333;
+    cursor:pointer;
+    text-align:center;
+    /*-moz-box-shadow:0px 1px 2px 0px #efeeee;
+    -webkit-box-shadow:0px 1px 2px 0px #efeeee;
+    box-shadow:2px 2px 2px 0px #efeeee;*/
+}
+
+table.dataTable tbody tr td {
+    border-bottom:1px solid #eee;
+    color:#333;
+}
+
+table.dataTable tbody tr {
+}
+
+table.dataTable tbody tr:hover {
+    background:#f8f8f8;
+}
+
+table.dataTable .even {
+    background:#fdfdfd;
+}
+
+table.dataTable .selected,
+table.dataTable .selected:hover{
+    background:#4B4B4B;
+    color:#fff;
+}
+
+table.dataTable .selected td,
+table.dataTable .selected:hover td{
+    color:#fff;
+}
+
+table.dataTable .center {
+    text-align:center;
+}
+
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting {
+    cursor: pointer;
+    *cursor: hand;
+}
+table.dataTable thead .sorting i{
+    color: #1d94d8;
+}
+table.dataTable thead .sorting .sort-both-img{
+    display: inherit;
+}
+table.dataTable thead .sorting .sort-asc-img{
+    display: none;
+}
+table.dataTable thead .sorting .sort-desc-img{
+    display: none;
+}
+table.dataTable thead .sorting_asc i{
+    padding-left: 6px;
+    color: #1d94d8;
+}
+table.dataTable thead .sorting_asc .sort-both-img{
+    display: none;
+}
+table.dataTable thead .sorting_asc .sort-asc-img{
+    display: inherit;
+}
+table.dataTable thead .sorting_asc .sort-desc-img{
+    display: none;
+}
+table.dataTable thead .sorting_desc i{
+    padding-left: 6px;
+    color: #1d94d8;
+}
+table.dataTable thead .sorting_desc .sort-both-img{
+    display: none;
+}
+table.dataTable thead .sorting_desc .sort-asc-img{
+    display: none;
+}
+table.dataTable thead .sorting_desc .sort-desc-img{
+    display: inherit;
+}
+
+div.dataTables_paginate {
+    height:48px;
+    line-height:48px;
+    background:#f9f9f9;
+    border-top:1px solid #dbdbdb;
+    text-align:right;
+}
+
+div.dataTables_paginate .paginate_button,
+div.dataTables_paginate .ellipsis{
+    width:21px;
+    height:21px;
+    line-height:21px;
+    text-align:center;
+    border:1px solid #cccccc;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    display:inline-block; *display:inline; *zoom:1;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #ffffff 43%, #fafafb 43%, #ffffff 43%, #f6f7f8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(43%,#ffffff), color-stop(43%,#fafafb), color-stop(43%,#ffffff), color-stop(100%,#f6f7f8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#ffffff 43%,#fafafb 43%,#ffffff 43%,#f6f7f8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#ffffff 43%,#fafafb 43%,#ffffff 43%,#f6f7f8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#ffffff 43%,#fafafb 43%,#ffffff 43%,#f6f7f8 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#ffffff 43%,#fafafb 43%,#ffffff 43%,#f6f7f8 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f7f8',GradientType=0 ); /* IE6-9 */
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    margin-right:8px;
+    color:#787878;
+    font-size:12px;
+    cursor:pointer;
+}
+
+div.dataTables_paginate .paginate_button:hover,
+div.dataTables_paginate .current{
+    background:#359ae9;
+    border:1px solid #359ae9;
+    color:#fff;
+    text-decoration:none;
+}
+
+div.dataTables_paginate .previous,
+div.dataTables_paginate .next {
+    width:60px;
+}
+
+.smalltable-conts {
+    overflow-x:auto;
+}
+
+.dataTables_processing {
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    filter:alpha(opacity=40);
+    -moz-opacity:0.4;
+    opacity:0.4;
+    background:url(http://imguserradar.analysys.cn/images/loading.gif) no-repeat center center #000;
+    text-align:center;
+    z-index:20;
+}

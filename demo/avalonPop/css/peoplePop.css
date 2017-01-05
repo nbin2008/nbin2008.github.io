@@ -1,0 +1,408 @@
+/* 公用 */
+.nb-fLeft{
+    float: left;
+}
+.nb-fRight{
+    float: right;
+}
+.nb-clear{
+    zoom: 1;
+}
+.nb-clear:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*  */
+.people-pop-shade a{
+    text-decoration: none;
+}
+.people-pop-shade{
+    -display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+.people-pop-box{
+    position: absolute;
+    width: 1000px;
+    left: 50%;
+    top: 50%;
+    margin-left: -500px;
+    margin-top: -300px;
+    min-height: 600px;
+    border-radius: 6px;
+    box-shadow: 0 0 5px #000;
+}
+.people-pop-head{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 60px;
+    background: #4b5868;
+}
+.people-pop-content-box{
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+}
+.people-pop-foot{
+    position: absolute;
+    height: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background: #4b5868;
+}
+.people-pop-head-title{
+    color: #ffffff;
+    position: relative;
+    font-size: 14px;
+    padding-left: 20px;
+    left: 20px;
+    top: 20px;
+}
+.people-pop-head-title:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    background: url("../images/peoplePop.png") no-repeat 0 0;
+}
+.people-pop-close{
+    color: #9bb1be;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 55px;
+    background: #242d36;
+    font-size: 40px;
+}
+.people-pop-unChoose-box{
+    padding-left: 20px;
+    width: 670px;
+    height: 100%;
+    background: #ffffff;
+    position: relative;
+}
+.people-pop-unChoose-box-limit{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.people-pop-isChoose-box{
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 330px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #f6f7fb;
+}
+h3.people-pop-choose-title{
+    font-weight: bold;
+    font-size: 14px;
+    margin: 20px 0;
+}
+.people-pop-unChoose-list{
+    margin-right: 20px;
+}
+.people-pop-unChoose-list>li{
+    border-bottom: 1px dashed #e9e8f0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    padding-left: 50px;
+}
+.people-pop-unChoose-list>li:last-child{
+    border-bottom: none;
+}
+.people-pop-unChoose-list>li .tag{
+    float: left;
+    width: 50px;
+    text-align: right;
+    height: 24px;
+    line-height: 24px;
+    margin-left: -50px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.people-pop-unChoose-list>li>div{
+    position: relative;
+    float: left;
+    height: 24px;
+    line-height: 22px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.people-pop-unChoose-list>li>div>span{
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    padding: 0 10px;
+    background: #ffffff;
+    border: 1px solid #e5eaee;
+    border-radius: 10px;
+}
+.people-pop-unChoose-list>li>div>span.active{
+    border-color: transparent;
+    background: #25a5fe;
+    color: #ffffff;
+}
+.people-pop-content-num-all,
+.people-pop-content-num-num{
+    padding: 2px;
+    line-height: 12px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 8px;
+    display: none;
+}
+.people-pop-content-num-all{
+    background: #fc635d;
+}
+.people-pop-content-num-num{
+    background: #fca057;
+}
+.people-pop-detail-box{
+    position: absolute;
+    width: 290px;
+    min-height: 90px;
+    padding: 0 10px;
+    background: #4b5868;
+    left: 200px;
+    top: 200px;
+    border-radius: 4px;
+    z-index: 1;
+    display: none;
+}
+.people-pop-detail-box:before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -16px;
+    top: 12px;
+    border: 8px solid transparent;
+    border-right-color: #4b5868;
+}
+.people-pop-detail-box span{
+    float: left;
+    padding: 0 10px;
+    height: 24px;
+    line-height: 24px;
+    background: #ffffff;
+    color: #000;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.people-pop-detail-box span.active{
+    background: #25a5fe;
+    color: #ffffff;
+}
+.people-pop-detail-head{
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000;
+}
+.people-pop-detail-btn-reset,
+.people-pop-detail-btn-close{
+    width: 12px;
+    height: 12px;
+    float: right;
+    margin: 6px 5px 0;
+    background-image: url("../images/peoplePop.png");
+    background-repeat: no-repeat;
+}
+.people-pop-detail-btn-reset{
+    background-position: -20px 0;
+}
+.people-pop-detail-btn-close{
+    background-position: -40px 0;
+}
+.people-pop-isChoose-list-tag{
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #e7e8ee;
+}
+.people-pop-isChoose-list-tag>li{
+    float: left;
+    height: 24px;
+    line-height: 22px;
+    padding: 0 10px;
+    border: 1px solid #26a6ff;
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #26a6ff;
+    cursor: pointer;
+}
+.people-pop-isChoose-list-tag>li>a{
+    position: absolute;
+    display: none;
+    width: 12px;
+    height: 12px;
+    right: -6px;
+    top: -6px;
+    text-align: center;
+    line-height: 10px;
+    background: #ff645d;
+    border-radius: 50%;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+.people-pop-isChoose-list-tag>li:hover{
+    border-color: transparent;
+    background: #26a6ff;
+    color: #ffffff;
+}
+.people-pop-isChoose-list-tag>li:hover a{
+    display: block;
+}
+.people-pop-isChoose-list-type{}
+.people-pop-isChoose-list-type li{
+    height: 34px;
+    padding: 5px 0;
+    line-height: 24px;
+    background: transparent;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+.people-pop-isChoose-list-type li>*{
+    float: left;
+}
+.people-pop-isChoose-btn-remove{
+    display: inline-block;
+    margin-left: 10px;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    line-height: 10px;
+    background: #ffffff;
+    color: #aac4de;
+    font-weight: bold;
+    border-radius: 50%;
+    position: relative;
+    top: 6px;
+    visibility: hidden;
+}
+.people-pop-isChoose-name{
+    width: 90px;
+    height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 10px;
+    color: #26a6ff;
+}
+.people-pop-isChoose-list-type li input{
+    width: 44px;
+    height: 24px;
+    border: 1px solid #dbdee6;
+    text-align: center;
+    outline: none;
+}
+.people-pop-tgi{
+    margin: 0 5px;
+}
+.people-pop-isChoose-list-type li:hover{
+    background: #aac4de;
+}
+.people-pop-isChoose-list-type li:hover .people-pop-isChoose-btn-remove{
+    visibility: inherit;
+}
+.people-pop-isChoose-list-type li:hover .people-pop-isChoose-name{
+    color: #ffffff;
+}
+.people-pop-isChoose-list-type li:hover .people-pop-tgi{
+    color: #ffffff;
+}
+.people-pop-foot{
+    text-align: center;
+}
+.people-pop-foot a{
+    position: relative;
+    top: 12px;
+    margin: 0 5px;
+    display: inline-block;
+    width: 80px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 16px;
+    border-radius: 6px;
+    background: #f6f7fa;
+    color: #000000;
+}
+.people-pop-foot a:hover{
+    background: #ff9e57;
+    color: #ffffff;
+}
+.people-pop-write-box{
+    display: none;
+    width: 280px;
+    height: 170px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 20px;
+    margin-left: -140px;
+    margin-top: -85px;
+    background: #ffffff;
+    border-radius: 6px;
+}
+.people-pop-write-box h3{
+    font-size: 16px;
+    margin: 0;
+    height: 40px;
+}
+.people-pop-write-name{
+    width: 100%;
+    height: 36px;
+    border-radius: 4px;
+    background: #f1f1f1;
+    border: 1px solid #dfdfdf;
+    outline: none;
+    text-align: center;
+    font-size: 14px;
+}
+.people-pop-write-box a{
+    position: relative;
+    top: 20px;
+    width: 112px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    background: #dcdcdc;
+    color: #000000;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.people-pop-write-box a:hover{
+    background: #ff9e57;
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+

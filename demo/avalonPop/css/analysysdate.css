@@ -1,0 +1,108 @@
+/*时间选择*/
+.timeBox .border{border:1px solid #0097e0; /*box-shadow:0 0 5px 1px #e0f5ff;*/}
+.timeBoxCon{
+    width: 100%;
+    height: 156px;
+    /*border: 1px solid #0097e0;*/
+    background-color: #f8fbff;
+    /*box-shadow: 0 0 3px 1px #ceebf9;*/
+    border-radius: 4px;-moz-border-radius: 4px;-webkit-border-radius: 4px;}
+.siftCom{ margin-right:20px; float: right; position:relative;}
+.siftCom.timeBox{margin-right:40px;}
+.timeBox .border{border:1px solid #0097e0; /*box-shadow:0 0 5px 1px #e0f5ff;*/}
+.timeBox .focus{color:#0097e0; border:1px solid #0097e0; background-color:#fff;}
+.timeBox .focus span{background-position:0 -54px;}
+.timeBoxCon .title{text-align:center; margin:0 34px;width: 314px;background-color: transparent;border: 0;}
+.timeBoxCon .title span{color:#333; font-size:14px; height:52px; line-height:52px; margin:0 25px; cursor:pointer;}
+.timeBoxCon .title .focus{color:#0097e0; }
+.timeBoxCon .title span:hover{color:#0097e0;}
+.timeBoxCon .timeAll{    font-size: 12px;
+    font-size: 12px;
+    width: 270px;
+    height: 154px;
+    /* padding-top: 8px; */
+    /* margin: 0 18px; */
+    border: 1px solid #0097e0;
+    background-color: #fff;
+    border-radius: 4px;-moz-border-radius: 4px;-webkit-border-radius: 4px;}
+.timeBoxCon .weeks h4,.timeBoxCon .days h4,.timeBoxCon .months h4,.timeBoxCon .seasons h4,.timeBoxCon .years h4{font-weight:normal; height:30px; line-height:30px;  width:225px; float:left;color: #333;}
+.timeBoxCon .weeks h4{margin:0px 23px 8px 23px;}
+.timeBoxCon .weeks h4 span,.timeBoxCon .days h4 span,.timeBoxCon .months h4 span,.timeBoxCon .seasons h4 span,.timeBoxCon .years h4 span{width:104px; height:30px; float:left; text-align:center;}
+.timeBoxCon .weeks ul{}
+.timeBoxCon ul li p{padding-left: 1px;}
+.timeBoxCon .weeks ul li {    border: 1px solid #fff;
+    width: 82px;
+    height: 38px;
+    text-align: center;
+    margin: 0 3px 16px 3px;
+    line-height: 18px;
+    float: left;
+    color: #333;
+    cursor: pointer;}
+.timeBoxCon .timeAll ul{float:left;}
+.timeBoxCon .timeAll ul li:hover{color:#0097e0; transition: all 0.1s linear; -webkit-transition: all 0.1s linear; -moz-transition: all 0.1s linear;  -o-transition: all 0.1s linear;}
+.timeBoxCon .timeAll ul li[data-display="false"]{cursor:default;}
+.timeBoxCon .timeAll ul .focus{border:1px solid #0097e0; color:#0097e0; border-radius:3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
+.timeBoxCon .timeAll em{width:8px;height: 30px;float:left;  margin:0 8px; cursor:pointer;moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    user-select:none;}
+.timeBoxCon .timeAll label{width:20px;height: 30px;float:left;  margin:0 8px; cursor:pointer;moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    user-select:none;}
+.timeBoxCon .timeAll .bigL{background-position:-66px -20px;}
+.timeBoxCon .timeAll .s_bigL{background-position:-66px -44px; cursor:default;}
+.timeBoxCon .timeAll .bigR{background-position:-89px -20px;}
+.timeBoxCon .timeAll .s_bigR{background-position:-89px -44px; cursor:default;}
+.timeBoxCon .timeAll .smallL{background-position:-115px -20px;}
+.timeBoxCon .timeAll .s_smallL{background-position:-115px -44px; cursor:default;}
+.timeBoxCon .timeAll .smallR{background-position:-137px -20px;}
+.timeBoxCon .timeAll .s_smallR{background-position:-137px -44px; cursor:default;}
+.timeBoxCon .center{width:152px; margin:0 auto; margin-top:18px; font-size:12px;}
+.timeBoxCon .center span{cursor:pointer; width:62px; height:28px; line-height:27px; text-align:center; border-radius:4px;-moz-border-radius: 4px;-webkit-border-radius: 4px; display:inline-block;}
+.timeBoxCon .center .sure{background-color:#0097e0; color:#fff; border:1px solid #0097e0; margin-right:18px;}
+.timeBoxCon .center .sure:hover{opacity: 0.7; transition: all 0.1s linear; -webkit-transition: all 0.1s linear; -moz-transition: all 0.1s linear;  -o-transition: all 0.1s linear;}
+.timeBoxCon .center .cancel{background-color:#fff; color:#666; border:1px solid #999;}
+.timeBoxCon .center .cancel:hover{opacity: 0.6; transition: all 0.1s linear; -webkit-transition: all 0.1s linear; -moz-transition: all 0.1s linear;  -o-transition: all 0.1s linear;}
+
+.timeBoxCon .months h4{margin:0px 23px 0px 23px;}
+.timeBoxCon .months ul li{border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;
+    width: 46px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #fff;
+    text-align: center;
+    float: left;
+    margin: 0 9px 9px 9px;
+    cursor: pointer;
+    color: #333;}
+
+
+.timeBoxCon .days h4{margin: 0px 23px 0px 23px;}
+.timeBoxCon .days ul li{border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;width: 23px;height: 12px;line-height: 12px;border: 1px solid #ffffff;text-align: center;float: left;margin: 0px 6px 3px 7px;cursor: pointer; color: #333;}
+.timeBoxCon .days ul.xq li{cursor: default;    color: #333;}
+.timeBoxCon .days ul.xq li:hover{color: #333;}
+
+.timeBoxCon .seasons h4{margin:0px 23px 0px 23px;}
+.timeBoxCon .seasons ul{    margin-top: 21px;}
+.timeBoxCon .seasons ul li{border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;
+    width: 68px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #fff;
+    text-align: center;
+    float: left;
+    margin: 0 30px 24px 30px;
+    cursor: pointer;
+    color: #333;}
+
+.timeBoxCon .years h4{width:200px; margin:0px 23px 0px 23px;}
+.timeBoxCon .years h4 span{width:132px;}
+.timeBoxCon .years ul li{border-radius:3px;-moz-border-radius: 3px;-webkit-border-radius: 3px; width:46px; height:28px; line-height:28px; border:1px solid #fff; text-align:center; float:left; margin:0 19px 24px 19px; cursor:pointer;}

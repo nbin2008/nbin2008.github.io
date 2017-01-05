@@ -1,0 +1,76 @@
+.download-main {
+	width: 1000px;
+	margin: 0 auto;
+	background-color: #fdfdfd;
+}
+.download-header {
+	height: 208px;
+	background-image: url(../images/dload-template/download-temp.jpg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+.download-header .logo {
+	padding-top: 60px;
+	text-align: center;
+}
+.download-header .download-intro {
+	margin-top: 35px;
+	color: #fff;
+	text-align: center;
+}
+.download-header .download-intro time {
+	font-size: 16px;
+}
+.download-cont {
+	padding: 0 30px 70px;
+}
+.download-cont .dload-item:first-child {
+	margin-top: 0;
+}
+.download-cont .dload-item  {
+	margin-top: 25px;
+}
+.dload-item .dl-title {
+	height: 36px;
+	margin-bottom: 15px;
+	line-height: 36px;
+	color: #35a2fe;
+	font-size: 20px;
+}
+.dload-item .dl-title i {
+	float: left;
+	width: 36px;
+	height: 36px;
+	margin-right: 5px;
+	background-image: url(../images/dload-template/mb-bs_04.png);\
+	background-repeat: no-repeat;
+}
+.download-footer {
+	height: 140px;
+	padding-top: 60px;
+	color: #fff;
+	background-image: url(../images/dload-template/download-temp.jpg);
+	background-repeat: no-repeat;
+	background-position: 0 bottom;
+}
+.download-footer .foot1 {
+	text-align: center;
+}
+.download-footer .foot2 {
+	font-size: 16px;
+	padding-top: 10px;
+}
+.download-footer .foot3 {
+	position: relative;
+}
+.foot3 .concern-pub {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -120px;
+	text-align: center;
+}
+.foot3 .concern-pub p {
+	margin-top: 5px;
+	line-height: 1.5;
+}
