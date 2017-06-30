@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>表格表头固定demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <style>
+        .row {
+            margin-bottom: 15px;
+        }
+
+        .table-box {
+            position: relative;
+            max-height: 500px;
+            border: 1px solid #ccc;
+        }
+
+        .table-box .table-striped>tbody>tr:nth-of-type(even) {
+            background-color: #fff;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="row">
+            <button type="button" class="btn btn-info" @click="renderTable">重置表格</button>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" :class="{'btn-info':type=='head'}" @click="changeTableType('head')">固定表头</button>
+                <button type="button" class="btn btn-default" :class="{'btn-info':type=='normal'}" @click="changeTableType('normal')">固定表头和第一列</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive table-box">
+                <table class="table table-striped table-bordered" id="table1">
+                    <tbody>
+                        <tr>
+                            <th style="cursor:pointer;" v-for="(v,i) in tableHeadList" @click="alert(v)">{{v}}</th>
+                        </tr>
+                        <tr v-for="(v,i) in tableList">
+                            <td v-for="(v2,i2) in v">{{v2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                tableHeadList: [],
+                tableList: [],
+                type: 'head',
+            }
+        },
+        methods: {
+            changeTableType(type) {
+                if (type == this.$data.type) return false;
+                this.$data.type = type;
+                this.renderTable();
+            },
+            renderTable() {
+                let num = Math.ceil(Math.random() * 20);
+                let tableHeadList = [],
+                    tableList = [];
+                let list = [];
+                i = 0;
+                while (i++ < num) {
+                    list.push(Math.random())
+                }
+                tableHeadList = list;
+                while (i-- > 0) {
+                    tableList.push(list);
+                }
+                this.$data.tableHeadList = tableHeadList;
+                this.$data.tableList = tableList;
+                this.$nextTick(() => {
+                    this.tableFixHead2({tableArr:['table1'],type:this.$data.type});
+                })
+            },
+            //表格表头固定,这种方法是copy一个table操作，不会改变原table任何样式，但是不支持原table上面的vue事件
+            tableFixHead({ tableArr = [], type = null }) {
+                //默认是固定头部和第一列，可传参数type=head只固定头部
+                let go = function () {
+                    tableArr.forEach((id) => {
+                        let $table = $(`#${id}`),
+                            $cloneTable = $table.clone(true),
+                            $parent = $table.parent();
+                        $parent.find('.cloneTable').remove();
+                        $cloneTable.removeAttr('id').addClass('cloneTable');
+                        $parent.append($cloneTable);
+                        $parent.scrollLeft(0);
+                        $parent.scrollTop(0);
+                        //
+                        $cloneTable.css({
+                            'border-width': 0,
+                        });
+                        //
+                        let $thOld = $table.find('th'),
+                            $th = $cloneTable.find('th'),
+                            $tr = $cloneTable.find('tr'),
+                            $thFirst = $th.eq(0),
+                            widthF = $thFirst.outerWidth() + 1, //这是第一列的宽度
+                            heightF = $thFirst.outerHeight();
+                        //tr固定宽高,第一行取自身的，其二行起取第一列的宽度
+                        $tr.each(function (i, v) {
+                            if (i == 0) {
+                                $(v).css({
+                                    width: $(v).outerWidth() + 1,
+                                    height: heightF,
+                                    left: 0,
+                                    top: 0,
+                                });
+                            } else {
+                                $(v).css({
+                                    width: widthF,
+                                    height: heightF,
+                                    left: 0,
+                                    top: heightF * i,
+                                });
+                            }
+                        });
+                        //th
+                        $th.each(function (i, v) {
+                            $(v).css({
+                                width: $thOld.eq(i).outerWidth() + 1,
+                                left: $thOld.eq(i).position().left,
+                                top: 0,
+                            })
+                        });
+                        //td,因为最终只会保留第一列的td，所以可以设置固定的宽度，这个宽度是th第一个的
+                        $cloneTable.find('td').each(function (i, v) {
+                            $(v).css({
+                                width: widthF,
+                            })
+                        });
+                        $thFirst.css({
+                            'z-index': 2,
+                            'background-color': $tr.eq(0).css('background-color'),
+                        })
+                        $th.css({
+                            position: 'absolute',
+                        });
+                        $tr.css({
+                            position: 'absolute',
+                        });
+                        //$cloneTable.hide();
+                        //实际控制元素thFirst，th，tr第二列起
+                        //删除第二列起的td，头部第一行不需要删除
+                        $tr.each(function (i, v) {
+                            $(v).find('td:gt(0)').remove();
+                        });
+                        /*
+                        * 交互元素分4种情况:tr第一行，tr第二行及以上，th第一列
+                        */
+                        let $trF = $tr.eq(0),
+                            $trS = $cloneTable.find('tr:gt(0)'),
+                            $thF = $th.eq(0);
+                        //
+                        if (type == 'head') {
+                            $trS.remove()
+                            $parent.off().scroll(function (e) {
+                                let sTop = e.target.scrollTop,
+                                    sLeft = e.target.scrollLeft;
+                                $trF.css({ top: sTop });
+                            });
+                        } else {
+                            $parent.off().scroll(function (e) {
+                                let sTop = e.target.scrollTop,
+                                    sLeft = e.target.scrollLeft;
+                                $trF.css({ top: sTop });
+                                $thF.css({ left: sLeft });
+                                $trS.css({ left: sLeft });
+                            });
+                        }
+                    });
+                };
+                go();
+                let timer = null,
+                    id = tableArr[0] || 'null';
+                $(window).off('resize.' + id).on('resize.' + id, function () {
+                    clearTimeout(timer);
+                    console.log('resize');
+                    timer = setTimeout(() => {
+                        go();
+                    }, 300);
+                });
+            },
+            //对table的tr，th，td处理，过程比上面的方法要复杂，会改变原table的一些样式，table上的事件可以继续调用
+            tableFixHead2({ tableArr = [], type = null }) {
+                //默认是固定头部和第一列，可传参数type=head只固定头部
+                let go = function () {
+                    tableArr.forEach((id) => {
+                        let $table = $(`#${id}`),
+                            $parent = $table.parent(),
+                            $tr = $table.find('tr'),
+                            $tr0 = $tr.eq(0),
+                            $th = $table.find('th'),
+                            $th0 = $th.eq(0),
+                            $td = $table.find('td'),
+                            col = $th.length,
+                            row = $tr.length;
+                        //在操作之前，要恢复table的默认状态
+                        $parent.scrollLeft(0);
+                        $parent.scrollTop(0);
+                        $tr.css({ 'position': 'static' });
+                        $th.css({ 'position': 'static' });
+                        $td.css({ 'position': 'static' });
+                        //设置th,需要重置宽度
+                        //return;
+                        $th.css({ 'width': 0 });
+                        $td.css({ 'width': 0 });
+                        let cache = {
+                            tr_height: [],
+                            tr_top: [],
+                            th_width: [],
+                            th_height: [],
+                            td_height: [],
+                            td_top: [], //td的定位只能相对table
+                        }
+                        let th0_width = $th.eq(0).outerWidth(),
+                            th0_height = $th.eq(0).outerHeight(),
+                            tr_width = $tr.eq(0).outerWidth();
+                        //收集
+                        $tr.each(function (i, v) {
+                            cache['tr_height'].push($(v).outerHeight());
+                            cache['tr_top'].push($(v).position().top);
+                        });
+                        $th.each(function (i, v) {
+                            cache['th_width'].push($(v).outerWidth());
+                            cache['th_height'].push($(v).outerHeight());
+                        });
+                        $td.each(function (i, v) {
+                            cache['td_height'].push($(v).outerHeight());
+                            cache['td_top'].push($(v).parent().position().top);
+                        });
+                        //设置th
+                        $th.each(function (i, v) {
+                            $(v).css({
+                                width: cache['th_width'][i],
+                            });
+                        });
+                        //设置td
+                        $tr.each(function (i, v) {
+                            $(v).find('td').each(function (i2, v2) {
+                                $(v2).css({
+                                    width: cache['th_width'][i2],
+                                    height: cache['tr_height'][i],
+                                    top: cache['tr_top'][i],
+                                })
+                            });
+                        });
+                        //给第一列设置背景色
+                        $tr.each(function (i, v) {
+                            $(v).children().eq(0).css({
+                                'background-color': $(v).css('background-color'),
+                            })
+                        });
+                        //因为第一行tr绝对定位后，tr的宽度会变化，所以要补丁
+                        $table.css({ width: tr_width });
+                        $tr0.css({
+                            left: 0,
+                            width: tr_width,
+                            'padding-left': th0_width,
+                        });
+                        //设置th0
+                        $th0.css({
+                            position: 'absolute',
+                            width: th0_width + 1,
+                            left: 0,
+                            top: 0,
+                            'z-index': 2,
+                        });
+                        //设置第一列的td
+                        $tr.each(function (i, v) {
+                            $(v).find('td').eq(0).css({
+                                position: 'absolute',
+                                left: 0,
+                                width: th0_width + 1,
+                                height: cache['tr_height'][i] + 1,
+                            });
+                        });
+                        //在head固定的时候，table会paddint-top，对于td而言，要补上这一差值
+                        function setTdPosition(left, top) {
+                            if (type == 'head') {
+                                $tr.each(function (i, v) {
+                                    $(v).find('td').eq(0).css({
+                                        top: cache['tr_top'][i] + top,
+                                    })
+                                });
+                            } else {
+                                $tr.each(function (i, v) {
+                                    $(v).find('td').eq(0).css({
+                                        left: left,
+                                        top: cache['tr_top'][i] + top,
+                                    })
+                                });
+                                $th0.css({
+                                    left: left,
+                                })
+                            }
+                        };
+                        $parent.off().scroll(function (e) {
+                            let sTop = e.target.scrollTop,
+                                sLeft = e.target.scrollLeft;
+                            if (sTop < th0_height) {
+                                $tr0.css({ top: 0, position: 'static' });
+                                $table.css({ 'padding-top': 0 });
+                                setTdPosition(sLeft, 0);
+                            } else {
+                                $tr0.css({ top: sTop, position: 'absolute' });
+                                $table.css({ 'padding-top': th0_height });
+                                setTdPosition(sLeft, -th0_height + 1);
+                            }
+                        });
+                    });
+                };
+                go();
+                let timer = null,
+                    id = tableArr[0] || 'null';
+                $(window).off('resize.' + id).on('resize.' + id, function () {
+                    clearTimeout(timer);
+                    console.log('resize');
+                    timer = setTimeout(() => {
+                        go();
+                    }, 300);
+                });
+            },
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.renderTable();
+                /*
+                * 需要注意，方法会给window绑定resize事件，如果是SPA页面，路由在跳转前需要解绑resize事件
+                * $(window).off('resize.table1');
+                */
+            })
+        },
+    })
+
+</script>
+
+</html>
