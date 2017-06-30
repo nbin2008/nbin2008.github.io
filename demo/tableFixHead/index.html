@@ -68,7 +68,7 @@
                 this.renderTable();
             },
             renderTable() {
-                let num = Math.ceil(Math.random() * 20)+20;
+                let num = Math.ceil(Math.random() * 20) + 20;
                 let tableHeadList = [],
                     tableList = [];
                 let list = [];
@@ -83,7 +83,7 @@
                 this.$data.tableHeadList = tableHeadList;
                 this.$data.tableList = tableList;
                 this.$nextTick(() => {
-                    this.tableFixHead2({tableArr:['table1'],type:this.$data.type});
+                    this.tableFixHead2({ tableArr: ['table1'], type: this.$data.type });
                 })
             },
             //表格表头固定,这种方法是copy一个table操作，不会改变原table任何样式，但是不支持原table上面的vue事件
@@ -208,6 +208,11 @@
                             $td = $table.find('td'),
                             col = $th.length,
                             row = $tr.length;
+                        //每次渲染后，tr的高度会加1，这个用来做判断
+                        let isInit = $parent.attr('isInit');
+                        if (!isInit) {
+                            $parent.attr('isInit', 1);
+                        }
                         //在操作之前，要恢复table的默认状态
                         $parent.scrollLeft(0);
                         $parent.scrollTop(0);
@@ -223,7 +228,6 @@
                             tr_top: [],
                             th_width: [],
                             th_height: [],
-                            td_height: [],
                             td_top: [], //td的定位只能相对table
                         }
                         let th0_width = $th.eq(0).outerWidth(),
@@ -239,9 +243,17 @@
                             cache['th_height'].push($(v).outerHeight());
                         });
                         $td.each(function (i, v) {
-                            cache['td_height'].push($(v).outerHeight());
                             cache['td_top'].push($(v).parent().position().top);
                         });
+                        //不定，每经过一次查询，height都是加1，这个原因是border合并产生的
+                        if (isInit) {
+                            cache['tr_height'] = cache['tr_height'].map(v => {
+                                return v - 1;
+                            })
+                            cache['tr_top'] = cache['tr_top'].map((v, i) => {
+                                return v - i + 1;
+                            })
+                        }
                         //设置th
                         $th.each(function (i, v) {
                             $(v).css({
