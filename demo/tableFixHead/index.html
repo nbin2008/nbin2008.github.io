@@ -340,6 +340,7 @@
                 this.renderTable();
                 /*
                 * 需要注意，方法会给window绑定resize事件，如果是SPA页面，路由在跳转前需要解绑resize事件
+                * 用第二种方法，有零界点需要修复，一般情况下出现的概览很低,暂不处理了。零界点：表格的高度超出最大高度 小于 th的高度
                 * $(window).off('resize.table1');
                 */
             })
