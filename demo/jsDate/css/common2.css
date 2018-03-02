@@ -1,0 +1,220 @@
+@charset "utf-8";
+
+/* 清除内外边距 */
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,fieldset,lengend,button,input,textarea,th,td{
+	/* table elements 表格元素 */
+	margin: 0;
+	padding: 0;
+	word-wrap: break-word;
+}
+
+/* 设置默认字体 */
+
+body,button,input,select,textarea {
+	font-family: Helvetica;
+}
+
+h1,h2,h3,h4,h5 {
+	font-weight: normal;
+}
+
+address,cite,dfn,em,var {
+	font-style: normal;
+}
+
+/* 将斜体扶正 */
+
+code,kbd,pre,samp,tt {
+	font-family: "Courier New", Courier, monospace;
+}
+
+/* 统一等宽字体 */
+
+small {
+	font-size: 12px;
+}
+
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/* 重置列表元素 */
+
+ul,ol,li {
+	list-style: none;
+}
+
+/* 重置文本格式元素 */
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+input,textarea,select,radio,checkbox,button {
+	border: none;
+	outline: none;
+	resize: none;
+	vertical-align: middle;
+	-webkit-appearance: none;
+}
+
+img {
+	border: none;
+}
+
+.czjz {
+	position: relative;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+}
+
+.clearfix:before,.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.mui-pull-caption {
+	font-size: 24px;
+}
+
+.txt-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.sc {
+	background: #fff;
+	position: absolute;
+	left: 100%;
+	-webkit-transition: left 0.3s;
+	transition: left 0.3s;
+	z-index: 2;
+	height: 100%;
+}
+
+.scActive {
+	left: 0%;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h4 {
+	font-size: 18px;
+}
+
+h5 {
+	font-size: 16px;
+	color: #333;
+}
+
+h6 {
+	font-size: 14px;
+	color: #A7B0BE;
+}
+
+small {
+	font-size: 12px;
+	color: #96A2A8;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+.i-blue {
+	color: #46B6FC;
+}
+
+.i-yellow {
+	color: #FFC63C !important;
+}
+
+.i-green {
+	color: #81CD37;
+}
+
+.i-bluegreen {
+	color: #18DFB7;
+}
+
+.i-red {
+	color: #FFA58A;
+}
+
+.i-orange {
+	color: #FF701A;
+}
+
+.i-gray {
+	color: #B8C1CE;
+}
+
+.i-bluegray {
+	color: #96A2A8;
+}
+
+.i-jieti {
+	color: #31D574;
+	font-size: 30px;
+}
+
+.i-liuyan {
+	color: #17C295;
+	font-size: 32px;
+}
+
+.empty_empty {
+	position: fixed;
+	width: 100%;
+	top: 50%;
+	left: 50%;
+	text-align: center;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.empty_empty img {
+	width: 60px;
+	height: 76px;
+	display: block;
+	margin: 0 auto 10px;
+}
+
+.empty_empty span {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	height: 12px;
+	color: #999999;
+	font-size: 12px;
+	line-height: 12px;
+}

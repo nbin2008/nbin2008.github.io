@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name=viewport content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'>
+    <title>日历</title>
+    <link rel="stylesheet" href="./css/mui.css">
+    <link rel="stylesheet" type="text/css" href="./css/grow.css">
+    <link rel="stylesheet" type="text/css" href="./css/nav.css">
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./css/common2.css">
+    <link rel="stylesheet" type="text/css" href="./css/in-out-history.css">
+    <script src="./js/cssrem.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/jquery-2.0.3.js"></script>
+    <script src="./js/dateweek.js"></script>
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body class="light-gray">
+    <div id="content_box" class="theme-teacher" v-cloak>
+        <div class="date-limit" :class="{'date-l6':dateList.length>35}">
+            <header class="header-box">
+                <span href="javascript:;" class="btn-prev" @click="toPrevMonth">&lt;</span>
+                <span>{{year}}年{{month}}月</span>
+                <span href="javascript:;" class="btn-next" @click="toNextMonth">&gt;</span>
+            </header>
+            <div class="date-box">
+                <ul class="date-title">
+                    <li>日</li>
+                    <li>一</li>
+                    <li>二</li>
+                    <li>三</li>
+                    <li>四</li>
+                    <li>五</li>
+                    <li>六</li>
+                </ul>
+                <ul class="date-choose">
+                    <!-- <span>
+                        <a href="javascript:;" class="today">1<i></i></a>
+                    </span> -->
+                    <li v-for="(v,i) in dateList">
+                        <a href="javascript:;"
+                            :class="{ 'siblings':v.siblings, 'rest':v.week==0||v.week==6, 'today':v.date==today }"
+                            >{{ v.day }}<i></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-limit" :class="{'date-l6':dateList.length>35}">
+            <ul>
+                <li>
+                    <div class="date-show-box">
+                        <span class="line-t"></span>
+                        <span class="fix-time">08:30</span>
+                        <span class="line-b"></span>
+                    </div>
+                    <div class="detail-show-box">
+                        <p class="name">上学</p>
+                        <p class="card-time">校车刷卡：8:10</p>
+                        <!-- <p class="card-time card-time-error">未刷卡</p> -->
+                    </div>
+                    <div class="img-box">
+                        <img src="../../images/jzbg.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="date-show-box">
+                        <span class="line-t"></span>
+                        <span class="fix-time">08:30</span>
+                        <span class="line-b"></span>
+                    </div>
+                    <div class="detail-show-box">
+                        <p class="name">上学</p>
+                        <!-- <p class="card-time">校车刷卡：8:10</p> -->
+                        <p class="card-time card-time-error">未刷卡</p>
+                    </div>
+                    <div class="img-box">
+                        <img src="../../images/jzbg.png">
+                    </div>
+                </li>
+            </ul>
+            <!-- <div class="onrest">已请假</div> -->
+            <!-- <div class="nomark">非接送日</div> -->
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var Dw = new DateWeek(),
+        dt = new Date();
+    var vm = new Vue({
+        el: "#content_box",
+        data: {
+            dateList: [],
+            today: dt.getFullYear() +"-"+ (dt.getMonth()-0+1) +"-"+ dt.getDate(),
+            year: dt.getFullYear(),
+            month: dt.getMonth()-0+1,
+        },
+        methods: {
+            toNextMonth: function() {
+                this.month++;
+                if (this.month>12) {
+                    this.year++;
+                    this.month = 1;
+                }
+                this.renderList();
+            },
+            toPrevMonth: function() {
+                this.month--;
+                if (this.month<1) {
+                    this.year--;
+                    this.month = 12;
+                }
+                this.renderList();
+            },
+            renderList: function() {
+                Dw.setDate(this.year,this.month);
+                this.dateList = Dw.getDayList(1);
+            },
+        },
+        mounted: function() {
+            var _self = this;
+            this.$nextTick(function() {
+                _self.renderList();
+            });
+        },
+    })
+</script>
+
+</html>

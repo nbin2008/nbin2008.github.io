@@ -1,0 +1,274 @@
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.date-limit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 6.42rem;    //日期一般会有5行
+    // height: 7.34rem;  //特殊情况下有6行
+    overflow-y: hidden;
+    .header-box {
+        height: .72rem;
+        background: #43B253;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & > * {
+            color: #fff;
+            font-size: 16px;
+        }
+        .btn-prev {
+            margin-left: .33rem;
+        }
+        .btn-next {
+            margin-right: .33rem;
+        }
+    }
+    .date-box {
+        padding: 0 .16rem;
+        background: #50BF60;
+        .date-title {
+            display: flex;
+            li {
+                width: 14.2%;
+                text-align: center;
+                line-height: .8rem;
+                font-size: 12px;
+                color: #fff;
+            }
+        }
+        .date-choose {
+            padding: .1rem 0 .2rem;
+            display: flex;
+            flex-wrap: wrap;
+            li {
+                width: 14.2%;
+                height: .72rem;
+                position: relative;
+                margin-bottom: .2rem;
+                a {
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    margin-left: -18px;
+                    width: .72rem;
+                    height: .72rem;
+                    line-height: .72rem;
+                    text-align: center;
+                    border-radius: 50%;
+                    color: #fff;
+                    font-size: 15px;
+                    i {
+                        position: absolute;
+                        width: 4px;
+                        height: 4px;
+                        border-radius: 50%;
+                        left: 50%;
+                        margin-left: -2px;
+                        bottom: 2px;
+                    }
+                }
+                a.siblings {
+                    opacity: 0;
+                }
+                a.rest {
+                    color: rgba($color: #fff, $alpha: .5);
+                }
+                a.today {
+                    background: rgba(255,255,255,.3);
+                }
+                a.active {
+                    color: #50BF60;
+                    background: #fff;
+                }
+                a.normal {
+                    i {
+                        background: #A8DFB0;
+                    }
+                }
+                a.normal.active {
+                    i {
+                        background: #50BF60;
+                    }
+                }
+                a.error {
+                    i {
+                        background: #FFC122;
+                    }
+                }
+            }
+        }
+    }
+}
+.date-limit.date-l6 {
+    height: 7.34rem;
+}
+.content-limit {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 6.42rem;
+    bottom: .96rem;
+    overflow-y: auto;
+    background: #FFFFFF;
+    ul {
+        li {
+            display: flex;
+            .date-show-box {
+                flex: 0 0 1.7rem;
+                display: flex;
+                flex-direction: column;
+                span {
+                    flex: 1;
+                    text-align: center;
+                }
+                .line-t,
+                .line-b {
+                    margin-left: 50%;
+                    border-left: 2px solid #F4F8F9;
+                }
+                .fix-time {
+                    font-size: 18px;
+                    color: #333333;
+                }
+            }
+            .detail-show-box {
+                flex: 1;
+                .name {
+                    font-size: 16px;
+                    color: #333333;
+                    padding-top: .36rem;
+                    line-height: .32rem;
+                }
+                .card-time {
+                    font-size: 12px;
+                    color: #737373;
+                    padding-top: .12rem;
+                    line-height: .36rem;
+                }
+                .card-time-error {
+                    color: #FF5500;
+                }
+            }
+            .img-box {
+                flex: 0 0 2.24rem;
+                padding: .2rem 0;
+                img {
+                    display: block;
+                    width: 1.92rem;
+                    height: 1.08rem;
+                }
+            }
+            .detail-show-box,
+            .img-box {
+                border-bottom: 1px solid rgba(184,193,206,.5);
+            }
+        }
+        li:first-child {
+            .line-t {
+                border-left: none;
+            }
+        }
+        li:last-child {
+            .date-show-box {
+                border-bottom: 1px solid rgba(184,193,206,.5);
+            }
+            .line-b {
+                border-left: none;
+            }
+        }
+    }
+    .onrest {
+        text-align: center;
+        line-height: 1.5rem;
+        font-size: 14px;
+        color: #7A8893;
+    }
+    .nomark {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        line-height: 1.5rem;
+        font-size: 14px;
+        color: #7A8893;
+        transform: translate3d(-50%,-50%,0);
+    }
+}
+.content-limit.date-l6 {
+    top: 7.34rem;
+}
+.menu-box {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: .96rem;
+    ul {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        li {
+            flex: 1;
+            font-size: 16px;
+            i {
+                color: #97AAD0;
+                font-size: 14px;
+            }
+        }
+        li.name-box {
+            color: #333;
+            text-indent: .32rem;
+        }
+        li.tell-box,
+        li.im-box {
+            color: #576B95;
+            font-size: 12px;
+            flex: 0 0 100px;
+            text-align: center;
+        }
+    }
+}
+
+// theme-teacher
+.theme-teacher {
+    .date-limit {
+        .header-box {
+            background: #25A0D9;
+
+        }
+        .date-box {
+            background: #31B3EF;
+            .date-choose {
+                li {
+                    a.active {
+                        color: #31B3EF;
+                        background: #fff;
+                    }
+                    a.normal {
+                        i {
+                            background: #A8D5DF;
+                        }
+                    }
+                    a.normal.active {
+                        i {
+                            background: #A8D5DF;
+                        }
+                    }
+                    a.error {
+                        i {
+                            background: #FF6257;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .content-limit {
+        bottom: 0;
+    }
+}
