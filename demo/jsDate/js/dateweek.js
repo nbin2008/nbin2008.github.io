@@ -14,7 +14,7 @@ list = [
     ...
 ]
 */
-(function(window,$){
+(function(window){
     var proto = {
         getDay: function(y, m) {
             var mday = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
@@ -155,4 +155,4 @@ list = [
     DateWeek.prototype = proto;
     DateWeek.prototype.constructor = DateWeek;
     window.DateWeek = DateWeek;
-})(window,jQuery);
+})(window);
