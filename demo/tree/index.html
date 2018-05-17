@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>树形菜单</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div id="app">
+        <ul class="tree-list">
+            <item-li v-for="item in dlist" :item-data="item" @change-active="changeActive"></item-li>
+        </ul>
+    </div>
+</body>
+<script type="text/x-template" id="item-template">
+    <li class="item">
+        <div class="bold" :class="{'item-active':itemData.active}">
+            <div class="mode" :style="pleft">
+                <span class="f-caret fa"
+                      :class="{'fa-caret-right':!itemData.toggleOpen && itemData.child, 'fa-caret-down':itemData.toggleOpen && itemData.child}"
+                      @click.self.prevent="changeToggleOpen()"></span>
+                <span class="item-name" @click="changeActive(itemData)">
+                    <i class="fa fa-folder folder"></i>
+                    {{ itemData.department_name }}
+                </span>
+            </div>
+            <div class="ul-parent">
+                <span><i class="fa fa-align-justify"></i></span>
+                <ul class="anddelete" :did="itemData.id">
+                    <li data-tp="1">添加部门</li>
+                    <li data-tp="2">重命名</li>
+                    <li data-tp="3">删除</li>
+                </ul>
+            </div>
+        </div>
+        <ul v-if="itemData.child" v-show="itemData.toggleOpen">
+            <item-li v-for="item in itemData.child" :item-data="item" @change-active="changeActive($event)"></item-li>
+        </ul>
+    </li>
+</script>
+
+<script src="./lib/vue.js"></script>
+<script src="./js/data.js"></script>
+<script src="./js/components.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.js"></script>
+<script src="./js/main.js"></script>
+
+</html>

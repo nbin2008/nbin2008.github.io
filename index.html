@@ -4,11 +4,28 @@
 	<meta charset="UTF-8">
 	<title>nbin2008 demo list</title>
 </head>
+
 <body>
 	<a target="_blank" href="https://github.com/nbin2008/nbin2008.github.io">源码下载</a>
 	<p>list：</p>
 	<ol id="list"></ol>
 </body>
+
+<script>
+/*
+
+bootstrap：
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+子字库：
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+jq：
+src="https://cdn.bootcss.com/jquery/2.1.0/jquery.js"
+vue：
+src="https://cdn.bootcss.com/vue/2.4.0/vue.js"
+
+*/
+</script>
+
 <script>
 	var ol = document.getElementById("list");
 	var data = [
@@ -107,7 +124,11 @@
 		{
 		    title: '相册查看',
 			href: 'demo/photo-view/index.html',
-		}
+        },
+        {
+            title: '树形菜单',
+            href: 'demo/tree/index.html'
+        }
 	];
 	var str = "";
 	data.forEach(function(v,i){

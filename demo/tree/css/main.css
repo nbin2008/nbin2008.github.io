@@ -1,0 +1,64 @@
+/* main */
+.tree-list {
+    width: 200px;
+    height: 600px;
+    border: 1px solid #ccc;
+}
+
+
+/* item组件 */
+.item {
+    cursor: pointer;
+}
+.item-active {
+    background: #4597E0;
+    border: 1px solid #DEE1E6;
+    color: #fff!important;
+}
+.item .bold {
+    padding: 10px;
+    display: flex;
+}
+.item .folder {
+    color: #BFBFBF;
+    width: 12px!important;
+    height: 12px!important;
+    margin-right: 5px;
+}
+.mode {
+    display: flex;
+    flex: 1;
+}
+.mode .item-name {
+    flex: 1;
+}
+.f-caret {
+    font-size: 14px;
+    margin-right: 6px;
+    width: 6px;
+    display: inline-block;
+}
+.ul-parent {
+    position: relative;
+}
+.anddelete {
+    position: absolute;
+    width: 180px;
+    height: 137px;
+    left: 22px;
+    background: #FFFFFF;
+    padding: 0px!important;
+    border: 0 solid #E7EAEC;
+    z-index: 2;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.20);
+    border-radius: 5px;
+    overflow: hidden;
+    display: none;
+}
+.anddelete li {
+    height: 46px;
+    line-height: 46px;
+    padding-left: 10px;
+    border-bottom: 1px solid #E7EAEC;
+    color: #676A6C;
+}
