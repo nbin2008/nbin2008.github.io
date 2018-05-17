@@ -85,7 +85,7 @@ var app = new Vue({
         sPopEvent(tp) {
             switch (tp) {
                 case "1":
-                    this.popDeparOpen();
+                    // this.popDeparOpen();
                     console.log("添加部门");
                     break;
                 case "2":
