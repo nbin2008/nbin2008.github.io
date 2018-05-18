@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组的反向操作</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div id="app">
+        <p>多维数组的逆向操作，当前规则是：只要父级下面至少一个子集选择，父级必选。父级下面没有子集选择，则父级不选</p>
+        <hr>
+        <ul style="width: 200px;">
+            <item-li v-for="item in dlist" :item-data="item" @change-check="changeCheck($event)"></item-li>
+        </ul>
+    </div>
+</body>
+<script type="text/x-template" id="item-template">
+    <li class="item">
+        <div class="bold">
+            <div class="mode" :style="pleft">
+                <span class="checkbox-box">
+                    <input type="checkbox" v-model="itemData.is_check" @click="changeCheck(itemData)">
+                </span>
+                <span class="item-name">{{ itemData.permission_name }}</span>
+            </div>
+            <div class="fa-box">
+                <i class="f-caret fa"
+                :class="{'fa-caret-right':!itemData.toggleOpen && itemData.children, 'fa-caret-down':itemData.toggleOpen && itemData.children}" 
+                @click.self.prevent="changeToggleOpen()"
+                ></i>
+            </div>
+        </div>
+        <ul v-if="itemData.children" v-show="itemData.toggleOpen">
+            <item-li v-for="item in itemData.children" :item-data="item" @change-check="changeCheck($event)"></item-li>
+        </ul>
+    </li>
+</script>
+
+<script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+<script src="./js/data.js"></script>
+<script src="./js/components.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="./js/main.js"></script>
+
+</html>
