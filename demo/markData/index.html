@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据储存还原标记</title>
+    <style>
+        .box {
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ccc;
+        }
+        .border-red {
+            border: 1px solid red;
+        }
+        .color-red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="box">
+        <h3>数据类型1</h3>
+        <p>数据1: <input type="text" v-model="formVal.d1[0]"></p>
+        <p>数据2: <input type="text" v-model="formVal.d1[1]"></p>
+        <p>数据3: <input type="text" v-model="formVal.d1[2]"></p>
+        <p>数据5: <input type="text" v-model="formVal.d1[3]"></p>
+        <p>数据6: <input type="text" v-model="formVal.d1[4]"></p>
+    </div>
+    <div class="box">
+        <h3>数据类型2</h3>
+        <table>
+            <tr>
+                <th>数据1</th>
+                <th>数据2</th>
+                <th>数据3</th>
+                <th>数据4</th>
+                <th>数据5</th>
+            </tr>
+            <tr v-for="(v,i) in formVal.d2" :key="i">
+                <td><input type="text" v-model="formVal.d2[i]['kkk0']"></td>
+                <td><input type="text" v-model="formVal.d2[i]['kkk1']"></td>
+                <td><input type="text" v-model="formVal.d2[i]['kkk2']"></td>
+                <td><input type="text" v-model="formVal.d2[i]['kkk3']"></td>
+                <td><input type="text" v-model="formVal.d2[i]['kkk4']"></td>
+            </tr>
+        </table>
+    </div>
+    <hr/>
+    <button @click="toSave">提交</button> &nbsp;
+    <button @click="toRestore">还原</button>
+</div>
+</body>
+<script src="../utils/vue.js"></script>
+<script src="./utils/util.js"></script>
+<script src="./utils/serve.js"></script>
+<script>
+const mark = '_*_'
+const k = 'kkk'
+new Vue({
+  el: '#app',
+  data: {
+    formVal: {
+      d1: createOriginData(4),
+      d1Mark: {},
+      d2: [
+        {kkk0: '', kkk1: '', kkk2: '', kkk3: '', kkk4: ''},
+        {kkk0: '', kkk1: '', kkk2: '', kkk3: '', kkk4: ''},
+        {kkk0: '', kkk1: '', kkk2: '', kkk3: '', kkk4: ''},
+      ],
+      d2Mark: []
+    },
+    ajaxVal: {
+      d1: '',
+      d2: ''
+    }
+  },
+  methods: {
+    toSave () {
+      const result = checkValues(document.getElementById('app'))
+      if (result !== 'ok') {
+        return false
+      }
+      this.ajaxVal.d1 = objToStrNormal(this.formVal.d1)
+      this.ajaxVal.d2 = arrToStr(this.formVal.d2, k)
+    },
+    toRestore () {
+
+    }
+  }
+})
+</script>
+</html>
