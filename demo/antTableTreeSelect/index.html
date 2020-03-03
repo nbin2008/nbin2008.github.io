@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ant-table-tree-select</title>
+    <link rel="stylesheet" href="./ant/antd.min.css">
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <script src="./ant/antd.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a-table :columns="columns" :data-source="tabData" :row-selection="{selectedRowKeys: selectedRowKeys, onSelectAll: onSelectAll, onSelect: onSelect}" />
+    </div>
+</body>
+<script>
+const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+      width: '12%',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      width: '30%',
+      key: 'address',
+    },
+];
+
+const data = [
+    {
+      key: 1,
+      name: 'John Brown sr.',
+      age: 60,
+      address: 'New York No. 1 Lake Park',
+      children: [
+        {
+          key: 11,
+          name: 'John Brown',
+          age: 42,
+          address: 'New York No. 2 Lake Park',
+        },
+        {
+          key: 12,
+          name: 'John Brown jr.',
+          age: 30,
+          address: 'New York No. 3 Lake Park',
+          children: [
+            {
+              key: 121,
+              name: 'Jimmy Brown',
+              age: 16,
+              address: 'New York No. 3 Lake Park',
+            },
+          ],
+        },
+        {
+          key: 13,
+          name: 'Jim Green sr.',
+          age: 72,
+          address: 'London No. 1 Lake Park',
+          children: [
+            {
+              key: 131,
+              name: 'Jim Green',
+              age: 42,
+              address: 'London No. 2 Lake Park',
+              children: [
+                {
+                  key: 1311,
+                  name: 'Jim Green jr.',
+                  age: 25,
+                  address: 'London No. 3 Lake Park',
+                },
+                {
+                  key: 1312,
+                  name: 'Jimmy Green sr.',
+                  age: 18,
+                  address: 'London No. 4 Lake Park',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      key: 2,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+    },
+];
+
+const mixinTableTreeSelect = {
+  data() {
+    return {
+      tabData: [],
+      selectedRowKeys: []
+    }
+  },
+  methods: {
+    onSelectAll(selected) {
+      if (selected) {
+        const tabData = this.tabData;
+        const arr = [];
+        setVal(tabData, arr)
+        this.selectedRowKeys = arr;
+      } else {
+        this.selectedRowKeys = [];
+      }
+      function setVal(list, arr) {
+        list.forEach(v => {
+          arr.push(v.key);
+          if (v.children) {
+            setVal(v.children, arr);
+          }
+        })
+      }
+    },
+    onSelect(record, selected, selectedRows) {
+      const set = new Set(this.selectedRowKeys);
+      const tabData = this.tabData;
+      const key = record.key;
+      if (selected) {
+        set.add(key);
+        record.children && setChildCheck(record.children);
+        setParentCheck(key);
+      } else {
+        set.delete(key);
+        record.children && setChildUncheck(record.children);
+        setParentUncheck(key);
+      }
+      this.selectedRowKeys = Array.from(set);
+      // 设置父级选择
+      function setParentCheck(key) {
+        var parent = getParent(key);
+        if (parent) {
+          set.add(parent.key);
+          setParentCheck(parent.key);
+        }
+      }
+      // 设置父级取消，如果父级的子集有选择，则不取消
+      function setParentUncheck(key) {
+        var childHasCheck = false,
+          parent = getParent(key);
+        if (parent) {
+          var childlist = parent.children;
+          childlist.forEach(function(v,i) {
+            if (set.has(v.key))
+              childHasCheck = true;
+          });
+          if (!childHasCheck) {
+            set.delete(parent.key);
+            setParentUncheck(parent.key);
+          }
+        }
+      }
+      // 获取当前对象的父级
+      function getParent(key) {
+        for (let i=0; i<tabData.length; i++) {
+          if (tabData[i].key === key) {
+            return null;
+          }
+        }
+        return _getParent(tabData);
+        function _getParent(list) {
+          var childlist,
+            isExist = false;
+          for (let i=0; i<list.length; i++) {
+            if (childlist=list[i].children) {
+              childlist.forEach(function(v,i2) {
+                if (v.key === key)
+                  isExist = true;
+              });
+              if (isExist) {
+                return list[i];
+              }
+              if (_getParent(childlist)) {
+                return _getParent(childlist);
+              }
+            }
+          };
+        }
+      }
+      // 设置child全选
+      function setChildCheck(list) {
+        list.forEach(function(v,i) {
+          set.add(v.key);
+          v.children && setChildCheck(v.children);
+        });
+      }
+      // 设置child取消
+      function setChildUncheck(list) {
+        list.forEach(function(v,i) {
+          set.delete(v.key);
+          v.children && setChildUncheck(v.children);
+        });
+      }
+    }
+  }
+};
+
+new Vue({
+  el: '#app',
+  mixins: [mixinTableTreeSelect],
+  data() {
+    return {
+      columns
+    }
+  },
+  mounted() {
+    this.tabData = data;
+  }
+})
+</script>
+</html>
